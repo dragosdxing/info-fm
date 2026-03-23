@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info FM - Romania & Moldova</title>
+    <script src="news_data.js"></script>
+    
+    <style>
+        body {
+            background-color: #050508; /* Negru inchis, stilizat */
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            /* Dacă nu ai poza la îndemână, pune o culoare de fundal ca placeholder */
+            background-color: #1a1a24; 
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .language-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .language-menu span {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .language-menu span:hover { opacity: 0.7; }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #cccccc;
+            padding: 0 10px;
+        }
+
+        /* Sectiunea de stiri */
+        .news-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .news-item {
+            margin-bottom: 25px;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #eeeeee;
+        }
+
+        .news-date {
+            font-weight: normal;
+        }
+
+        .highlight {
+            color: #4CAF50; /* Verdele tau din poza */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>INFO FM FROM ROMANIA & MOLDOVA</h1>
+
+    <img src="hero.jpg" alt="Info FM Hero" class="hero-image" onerror="this.style.display='none'">
+
+    <div class="language-menu">
+        <span>ENGLI<span style="color: #ff6b6b;">S</span>H</span>
+        <span>GER<span style="color: #ffd93d;">M</span>AN</span>
+        <span>POLISH</span>
+        <span>ITALI<span style="color: #6bcb77;">A</span>N</span>
+        <span>RUSSI<span style="color: #ff6b6b;">A</span>N</span>
+    </div>
+
+    <div class="subtitle">
+        AICI GĂSEȘTI INFORMAȚII LEGATE DE CONCURSURI, LICENȚE NOI ȘI RETRAGERI ALE POSTURILOR RADIO DIN ROMÂNIA ȘI REPUBLICA MOLDOVA
+    </div>
+
+    <ul class="news-list" id="news-container">
+        </ul>
+</div>
+
+<script>
+    // Functie care incarca stirile din news_data.js si le randeaza pe ecran
+    function loadNews() {
+        const container = document.getElementById('news-container');
+        
+        if (typeof NEWS_DB === 'undefined') {
+            container.innerHTML = "<li>Eroare: Nu s-a putut încărca baza de date cu știri.</li>";
+            return;
+        }
+
+        let htmlContent = "";
+
+        NEWS_DB.forEach(news => {
+            // Definim steagul in functie de tara
+            let flag = "";
+            if (news.country === "RO") flag = "🇷🇴";
+            else if (news.country === "MD") flag = "🇲🇩";
+
+            // Construim HTML-ul pentru fiecare stire
+            htmlContent += `
+                <li class="news-item">
+                    <span class="news-date">${news.date} (${flag}):</span> ${news.content}
+                </li>
+            `;
+        });
+
+        container.innerHTML = htmlContent;
+    }
+
+    // Rulam functia cand se incarca pagina
+    window.onload = loadNews;
+</script>
+
+</body>
+</html>
