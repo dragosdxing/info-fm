@@ -8,11 +8,11 @@
     
     <style>
         body {
-            background-color: #050508; /* Negru inchis, stilizat */
+            background-color: #000000; /* Negru pur, stil profesional */
             color: #ffffff;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px; /* Putin padding pt mobile */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,68 +25,87 @@
 
         h1 {
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             letter-spacing: 1px;
             text-decoration: underline;
             text-underline-offset: 6px;
-            margin-bottom: 30px;
+            margin-top: 20px;
+            margin-bottom: 25px;
             font-weight: normal;
         }
 
         .hero-image {
             width: 100%;
+            height: auto;
             border-radius: 8px;
-            margin-bottom: 30px;
-            /* Dacă nu ai poza la îndemână, pune o culoare de fundal ca placeholder */
-            background-color: #1a1a24; 
+            margin-bottom: 25px;
             display: block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,255,0,0.1); /* Efect usor verde */
         }
 
         .language-menu {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 30px;
-            font-size: 16px;
+            margin-bottom: 25px;
+            font-size: 15px;
             letter-spacing: 1px;
+            color: #aaaaaa;
         }
 
         .language-menu span {
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
         }
-        .language-menu span:hover { opacity: 0.7; }
+        .language-menu span:hover { color: #00ff00; }
 
         .subtitle {
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 40px;
-            color: #cccccc;
+            margin-bottom: 35px;
+            color: #bbbbbb;
             padding: 0 10px;
+            text-transform: uppercase; /* Totul cu litere mari */
         }
 
-        /* Sectiunea de stiri */
-        .news-list {
-            list-style-type: disc;
-            padding-left: 20px;
+        /* Sectiunea de stiri - stil listă */
+        .news-container {
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         .news-item {
-            margin-bottom: 25px;
-            font-size: 17px;
+            margin-bottom: 20px;
+            font-size: 16px;
             line-height: 1.7;
-            color: #eeeeee;
+            color: #dddddd;
+            display: flex; /* Pt a alinia punctul si textul */
+            align-items: flex-start;
+        }
+
+        .news-item::before {
+            content: "•";
+            color: #ffffff; /* Punct alb */
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
 
         .news-date {
             font-weight: normal;
+            color: #ffffff;
         }
 
+        /* Clase pentru culori in text */
         .highlight {
-            color: #4CAF50; /* Verdele tau din poza */
+            color: #00ff00; /* Verde neon pt posturi */
+            font-weight: bold;
+        }
+        .freq-style {
+            color: #ffd93d; /* Galben pt frecvente */
         }
     </style>
 </head>
@@ -95,7 +114,7 @@
 <div class="container">
     <h1>INFO FM FROM ROMANIA & MOLDOVA</h1>
 
-    <img src="hero.jpg" alt="Info FM Hero" class="hero-image" onerror="this.style.display='none'">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhx8vJb0RvvLKwHx_1cD-bmHmP_FpZB2Dpo_OV-Q-diVrvKkuIafxKvju4lar6lq-0MRn5XxzauwuPganRVeJuFWzrmO2oRHCtn9gzoIn46c0z29IJsJsoaTRHJEWfbyTtr1ieuXWFp4vn-4em36CnuuDUfRMKdL2-QDZIV8Pd8JA0DYIffFKLAMjXtWQ0/s4096/IMG_20260105_160434.png" alt="Info FM Hero" class="hero-image">
 
     <div class="language-menu">
         <span>ENGLI<span style="color: #ff6b6b;">S</span>H</span>
@@ -109,8 +128,8 @@
         AICI GĂSEȘTI INFORMAȚII LEGATE DE CONCURSURI, LICENȚE NOI ȘI RETRAGERI ALE POSTURILOR RADIO DIN ROMÂNIA ȘI REPUBLICA MOLDOVA
     </div>
 
-    <ul class="news-list" id="news-container">
-        </ul>
+    <div class="news-container" id="news-container">
+        </div>
 </div>
 
 <script>
@@ -118,14 +137,15 @@
     function loadNews() {
         const container = document.getElementById('news-container');
         
-        if (typeof NEWS_DB === 'undefined') {
-            container.innerHTML = "<li>Eroare: Nu s-a putut încărca baza de date cu știri.</li>";
+        if (typeof NEWS_DB === 'undefined' || NEWS_DB.length === 0) {
+            container.innerHTML = "<div class='news-item'>Nu sunt știri momentan în baza de date. Adaugă-le în news_data.js!</div>";
             return;
         }
 
         let htmlContent = "";
 
-        NEWS_DB.forEach(news => {
+        // Rulăm prin știri (revers ca să fie cea mai nouă sus)
+        [...NEWS_DB].reverse().forEach(news => {
             // Definim steagul in functie de tara
             let flag = "";
             if (news.country === "RO") flag = "🇷🇴";
@@ -133,9 +153,11 @@
 
             // Construim HTML-ul pentru fiecare stire
             htmlContent += `
-                <li class="news-item">
-                    <span class="news-date">${news.date} (${flag}):</span> ${news.content}
-                </li>
+                <div class="news-item">
+                    <span>
+                        <span class="news-date">${news.date} (${flag}):</span> ${news.content}
+                    </span>
+                </div>
             `;
         });
 
