@@ -8,191 +8,222 @@
     <script src="news_data.js"></script>
     
     <style>
+        /* Modernizare generala bazata pe referinta */
         body {
-            /* Gradient modern pe fundal, fixat sa nu se miste cand dai scroll */
-            background: radial-gradient(circle at 50% 0%, #1a1e29 0%, #050508 70%);
+            /* Pasul 1: Inseram pnt.jpg ca background */
+            /* Adaugam si un overlay negru (linear-gradient) ca sa se poata citi textul */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('pnt.jpg');
+            background-size: cover;
             background-attachment: fixed;
+            background-position: center;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 15px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
             max-width: 800px;
             width: 100%;
+            padding-bottom: 50px;
         }
 
         h1 {
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-top: 25px;
-            margin-bottom: 25px;
-            /* Text cu gradient verde */
-            background: linear-gradient(90deg, #00ff00, #00cc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            margin-bottom: 30px;
             text-transform: uppercase;
+            color: #ffffff;
         }
 
         .hero-image {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
             display: block;
-            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
         .button-container {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
-        /* Butonul modern pentru Harta FM */
+        /* Buton modernizat, integrat in design */
         .map-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: linear-gradient(45deg, #00ff00, #00aa00);
-            color: #000;
-            padding: 14px 28px;
-            border-radius: 8px;
+            gap: 12px;
+            background: linear-gradient(135deg, #111111 0%, #333333 100%);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
-            border: 1px solid #00ff00;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .map-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
-            background: linear-gradient(45deg, #00aa00, #00ff00);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.3);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
         }
 
         .language-menu {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 18px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
-            font-size: 14px;
+            margin-bottom: 25px;
+            font-size: 13px;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: #888888;
         }
 
         .language-menu span {
             cursor: pointer;
             transition: color 0.2s;
+            text-transform: uppercase;
         }
+        
+        /* Efectul de litera colorata apare doar la hover, stil Pro */
         .language-menu span:hover { color: #ffffff; }
 
         .subtitle {
             text-align: center;
             font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 35px;
-            color: #a0a0a0;
-            padding: 0 10px;
+            line-height: 1.8;
+            margin-bottom: 45px;
+            color: #aaaaaa;
+            padding: 0 20px;
             text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
-        /* Design de Carduri pentru Stiri */
+        /* Design Modern de Carduri (Stiri) */
         .news-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
         .news-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #00ff00;
-            border-radius: 10px;
-            padding: 20px;
+            background: rgba(15, 15, 15, 0.7); /* Translucid si inchis */
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 25px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .news-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-2px);
-            border-left: 4px solid #ffd93d; /* Se face galben la hover */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: rgba(20, 20, 20, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(0, 255, 0, 0.2);
         }
 
         .news-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .news-country-tag {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .news-flag {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         .news-date {
-            font-size: 14px;
+            font-size: 13px;
             color: #aaaaaa;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 400;
         }
 
         .news-content {
             font-size: 15px;
-            line-height: 1.7;
-            color: #e0e0e0;
+            line-height: 1.8;
+            color: #dddddd;
+            font-weight: 400;
         }
 
-        /* Clase pentru culori in text, injectate din JS */
+        /* Culori in text din news_data.js - pastrate dar mai subtile */
         .highlight {
-            color: #00ff00;
+            color: #ffffff; /* Text alb pt posturi */
             font-weight: 600;
         }
+        
         .freq-style {
-            color: #ffd93d;
+            color: #ffd93d; /* Galben pt frecvente, fara fundal exagerat */
             font-weight: 600;
-            background: rgba(255, 217, 61, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
         }
 
-        /* Link-urile din interiorul stirilor */
+        /* Link-uri stilizate Pro */
         .news-content a {
-            color: #00ff00;
-            text-decoration: none;
-            border-bottom: 1px solid #00ff00;
-            transition: color 0.2s, border-bottom 0.2s;
-        }
-        .news-content a:hover {
             color: #ffd93d;
-            border-bottom: 1px solid #ffd93d;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
         }
+        
+        .news-content a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        /* Scrollbar stilizat Pro */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050508; }
+        ::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555555; }
+        
     </style>
 </head>
 <body>
 
 <div class="container">
+    <h1>Info FM Updates</h1>
+
     <img src="cover.png" alt="Info FM Cover" class="hero-image" onerror="this.style.display='none'">
 
     <div class="button-container">
         <a href="https://dragosdxing.github.io/fm-map/" target="_blank" class="map-btn">
-            🗺️ DESCHIDE HARTA FM INTERACTIVĂ
+            🗺️ Deschide Harta FM Interactivă
         </a>
     </div>
 
@@ -205,7 +236,7 @@
     </div>
 
     <div class="subtitle">
-        INFORMAȚII LEGATE DE CONCURSURI, LICENȚE NOI ȘI RETRAGERI ALE POSTURILOR RADIO DIN ROMÂNIA ȘI REPUBLICA MOLDOVA.
+        Informații legate de concursuri, licențe noi și retrageri ale posturilor radio din România și Republica Moldova.
     </div>
 
     <div class="news-container" id="news-container">
@@ -223,17 +254,21 @@
 
         let htmlContent = "";
 
-        // Preluam datele din fisier exact in ordinea in care sunt scrise (cele mai noi primele)
+        // Preluam datele (noi primele conform news_data.js)
         NEWS_DB.forEach(news => {
             let flag = "";
-            if (news.country === "RO") flag = "🇷🇴";
-            else if (news.country === "MD") flag = "🇲🇩";
+            let countryName = "";
+            if (news.country === "RO") { flag = "🇷🇴"; countryName = "România"; }
+            else if (news.country === "MD") { flag = "🇲🇩"; countryName = "Moldova"; }
 
-            // Design-ul modern de Card
+            // Structura moderna de Card tip Pro
             htmlContent += `
                 <div class="news-card">
                     <div class="news-header">
-                        <span class="news-flag">${flag}</span>
+                        <div class="news-country-tag">
+                            <span class="news-flag">${flag}</span>
+                            <span>${countryName}</span>
+                        </div>
                         <span class="news-date">${news.date}</span>
                     </div>
                     <div class="news-content">
