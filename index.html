@@ -171,18 +171,28 @@
             padding: 2px 6px;
             border-radius: 4px;
         }
+
+        /* Link-urile din interiorul stirilor */
+        .news-content a {
+            color: #00ff00;
+            text-decoration: none;
+            border-bottom: 1px solid #00ff00;
+            transition: color 0.2s, border-bottom 0.2s;
+        }
+        .news-content a:hover {
+            color: #ffd93d;
+            border-bottom: 1px solid #ffd93d;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Info FM Updates</h1>
-
     <img src="cover.png" alt="Info FM Cover" class="hero-image" onerror="this.style.display='none'">
 
     <div class="button-container">
-        <a href="https://dragosdxing.github.io/" target="_blank" class="map-btn">
-            🗺️ Deschide Harta FM Interactivă
+        <a href="https://dragosdxing.github.io/fm-map/" target="_blank" class="map-btn">
+            🗺️ DESCHIDE HARTA FM INTERACTIVĂ
         </a>
     </div>
 
@@ -195,7 +205,7 @@
     </div>
 
     <div class="subtitle">
-        Informații legate de concursuri, licențe noi și retrageri ale posturilor radio din România și Republica Moldova.
+        INFORMAȚII LEGATE DE CONCURSURI, LICENȚE NOI ȘI RETRAGERI ALE POSTURILOR RADIO DIN ROMÂNIA ȘI REPUBLICA MOLDOVA.
     </div>
 
     <div class="news-container" id="news-container">
@@ -213,8 +223,8 @@
 
         let htmlContent = "";
 
-        // Rulăm prin știri (revers ca să fie cea mai nouă sus)
-        [...NEWS_DB].reverse().forEach(news => {
+        // Preluam datele din fisier exact in ordinea in care sunt scrise (cele mai noi primele)
+        NEWS_DB.forEach(news => {
             let flag = "";
             if (news.country === "RO") flag = "🇷🇴";
             else if (news.country === "MD") flag = "🇲🇩";
