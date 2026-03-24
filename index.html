@@ -63,6 +63,13 @@
             flex-wrap: wrap;
         }
 
+        /* Containerul pentru logo + buton meniu mobil */
+        .nav-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .nav-left {
             display: flex;
             align-items: center;
@@ -84,11 +91,32 @@
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.6));
         }
 
+        /* Butonul Hamburger ascuns pe PC */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #00ff00;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        /* Containerul extensibil (linkuri + ceas) */
+        .nav-collapsible {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 20px;
+        }
+
         .nav-center {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            flex-grow: 1;
         }
 
         .nav-center a {
@@ -114,6 +142,7 @@
             align-items: flex-end;
             font-size: 15px;
             color: #aaaaaa;
+            min-width: 200px;
         }
 
         .clock {
@@ -185,6 +214,7 @@
             align-items: center;
             gap: 8px;
             backdrop-filter: blur(5px);
+            white-space: nowrap;
         }
 
         .lang-btn:hover {
@@ -259,21 +289,9 @@
             gap: 8px;
         }
 
-        .news-flag {
-            font-size: 16px;
-        }
-
-        .news-date {
-            font-size: 14px; 
-            color: #aaaaaa;
-        }
-
-        .news-content {
-            font-size: 16px; 
-            line-height: 1.6;
-            color: #dddddd;
-        }
-
+        .news-flag { font-size: 16px; }
+        .news-date { font-size: 14px; color: #aaaaaa; }
+        .news-content { font-size: 16px; line-height: 1.6; color: #dddddd; }
         .highlight { color: #ffffff; }
         .freq-style { color: #ffd93d; }
 
@@ -294,9 +312,71 @@
         ::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555555; }
 
+        /* ========================================= */
+        /* RESPONSIVE DESIGN - AICI SUNT MODIFICARILE */
+        /* ========================================= */
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; text-align: center; }
-            .nav-right { align-items: center; }
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                align-items: stretch; /* Permite containerelor sa ocupe toata latimea */
+            }
+
+            .nav-top {
+                width: 100%; /* Fortam logo-ul si butonul sa ocupe tot randul de sus */
+            }
+
+            /* Afisam butonul de meniu pe telefon */
+            .mobile-menu-btn {
+                display: block; 
+            }
+
+            /* Ascundem restul meniului pe mobil by default */
+            .nav-collapsible {
+                display: none; 
+                flex-direction: column;
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+                gap: 20px;
+            }
+
+            /* Clasa pe care o adaugam cu Javascript ca sa aratam meniul */
+            .nav-collapsible.show {
+                display: flex; 
+            }
+
+            .nav-center {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .nav-center a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+                background: rgba(255, 255, 255, 0.05); /* Usor fundal pt butoane pe mobil */
+            }
+
+            .nav-right {
+                align-items: center;
+                width: 100%;
+            }
+
+            /* BONUS: Meniul de limbi - scroll orizontal ca sa nu umple tot ecranul */
+            .language-menu {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch; /* smooth scroll pe iOS */
+            }
+
+            .language-menu::-webkit-scrollbar {
+                height: 4px;
+            }
         }
     </style>
 </head>
@@ -305,22 +385,27 @@
     <div id="google_translate_element2" style="display:none;"></div>
 
     <nav class="navbar notranslate">
-        <div class="nav-left">
-            <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
-            <div class="nav-brand">Dragoș DXing</div>
+        <div class="nav-top">
+            <div class="nav-left">
+                <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+                <div class="nav-brand">Dragoș DXing</div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         
-        <div class="nav-center">
-            <a href="https://dragosdxing.github.io/home/" target="_blank">HOME</a>
-            <a href="https://dragosdxing.github.io/fm-map/" target="_blank">FM Map</a>
-            <a href="https://servers.fmdx.org/" target="_blank">Servere TEF</a>
-            <a href="https://www.facebook.com/groups/1165433140982652/" target="_blank">Grup Facebook</a>
-            <a href="https://dragosconstantin20.blogspot.com/" target="_blank" style="color: #ff6b6b;">Vechiul Blog</a>
-        </div>
+        <div class="nav-collapsible" id="nav-menu">
+            <div class="nav-center">
+                <a href="https://dragosdxing.github.io/home/" target="_blank">HOME</a>
+                <a href="https://dragosdxing.github.io/fm-map/" target="_blank">FM Map</a>
+                <a href="https://servers.fmdx.org/" target="_blank">Servere TEF</a>
+                <a href="https://www.facebook.com/groups/1165433140982652/" target="_blank">Grup Facebook</a>
+                <a href="https://dragosconstantin20.blogspot.com/" target="_blank" style="color: #ff6b6b;">Vechiul Blog</a>
+            </div>
 
-        <div class="nav-right">
-            <div class="clock" id="clock">00:00:00</div>
-            <div class="weather" id="weather">🌤️ Se caută locația...</div>
+            <div class="nav-right">
+                <div class="clock" id="clock">00:00:00</div>
+                <div class="weather" id="weather">🌤️ Se caută locația...</div>
+            </div>
         </div>
     </nav>
 
@@ -353,6 +438,12 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
 
     <script>
+        // Functia NOUA pentru meniul de telefon
+        function toggleMobileMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('show');
+        }
+
         // Logica pentru Butoanele de Limba
         let currentLang = 'ro';
 
