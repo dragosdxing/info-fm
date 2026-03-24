@@ -194,7 +194,6 @@
             transform: translateY(-2px);
         }
 
-        /* Starea cand butonul e apasat/activ */
         .lang-btn.active {
             background: rgba(0, 255, 0, 0.15);
             color: #00ff00;
@@ -258,7 +257,6 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            /* Clasa notranslate impiedica motorul sa traduca si tagul cu tara */
         }
 
         .news-flag {
@@ -313,7 +311,7 @@
         </div>
         
         <div class="nav-center">
-            <a href="https://dragosdxing.github.io/dragosxding/" target="_blank">HOME</a>
+            <a href="https://dragosdxing.github.io/home/" target="_blank">HOME</a>
             <a href="https://dragosdxing.github.io/fm-map/" target="_blank">FM Map</a>
             <a href="https://servers.fmdx.org/" target="_blank">Servere TEF</a>
             <a href="https://www.facebook.com/groups/1165433140982652/" target="_blank">Grup Facebook</a>
@@ -359,7 +357,6 @@
         let currentLang = 'ro';
 
         function toggleTranslation(lang, btnElement) {
-            // Daca apesi pe o limba care e deja activa, revenim la Romana (refresh scurt)
             if (currentLang === lang) {
                 document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
@@ -367,7 +364,6 @@
                 return;
             }
 
-            // Altfel, setam butonul activ si declansam traducerea
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
             currentLang = lang;
