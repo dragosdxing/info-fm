@@ -40,9 +40,15 @@
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            /* Ascundem bara enervanta de la Google Translate */
+            top: 0 !important;
         }
 
-        /* Navigatia de sus (Meniul de la Home) */
+        .skiptranslate {
+            display: none !important;
+        }
+
+        /* Navigatia de sus */
         .navbar {
             position: sticky;
             top: 0;
@@ -128,7 +134,7 @@
             font-size: 16px;
         }
 
-        /* Containerul principal pentru Info FM */
+        /* Containerul principal */
         .container {
             max-width: 800px;
             width: 100%;
@@ -155,54 +161,47 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
         }
 
-        .button-container {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .map-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #111111 0%, #333333 100%);
-            color: #ffffff;
-            padding: 16px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .map-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.3);
-            border: 1px solid rgba(0, 255, 0, 0.5);
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-        }
-
+        /* Butoanele de Limba Moderne */
         .language-menu {
             display: flex;
             justify-content: center;
-            gap: 18px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 25px;
-            font-size: 15px;
-            letter-spacing: 1.5px;
-            color: #888888;
         }
 
-        .language-menu span {
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaaaaa;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: 'CyGrotesk', sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: color 0.2s;
-            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
         }
-        
-        .language-menu span:hover { color: #ffffff; }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Starea cand butonul e apasat/activ */
+        .lang-btn.active {
+            background: rgba(0, 255, 0, 0.15);
+            color: #00ff00;
+            border-color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
+        }
 
         .subtitle {
             text-align: center;
@@ -259,30 +258,26 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            /* Clasa notranslate impiedica motorul sa traduca si tagul cu tara */
         }
 
         .news-flag {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .news-date {
-            font-size: 15px;
+            font-size: 14px; 
             color: #aaaaaa;
         }
 
         .news-content {
-            font-size: 18px;
+            font-size: 16px; 
             line-height: 1.6;
             color: #dddddd;
         }
 
-        .highlight {
-            color: #ffffff; 
-        }
-        
-        .freq-style {
-            color: #ffd93d; 
-        }
+        .highlight { color: #ffffff; }
+        .freq-style { color: #ffd93d; }
 
         .news-content a {
             color: #ffd93d;
@@ -296,7 +291,6 @@
             border-bottom: 1px solid #ffffff;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050508; }
         ::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
@@ -310,14 +304,16 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <div id="google_translate_element2" style="display:none;"></div>
+
+    <nav class="navbar notranslate">
         <div class="nav-left">
             <img src="logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
             <div class="nav-brand">Dragoș DXing</div>
         </div>
         
         <div class="nav-center">
-            <a href="https://dragosdxing.github.io/info-fm/" target="_blank">Info FM</a>
+            <a href="https://dragosdxing.github.io/dragosxding/" target="_blank">HOME</a>
             <a href="https://dragosdxing.github.io/fm-map/" target="_blank">FM Map</a>
             <a href="https://servers.fmdx.org/" target="_blank">Servere TEF</a>
             <a href="https://www.facebook.com/groups/1165433140982652/" target="_blank">Grup Facebook</a>
@@ -331,22 +327,16 @@
     </nav>
 
     <div class="container">
-        <h1>Info FM Updates</h1>
+        <h1 class="notranslate">Info FM Updates</h1>
 
         <img src="cover.png" alt="Info FM Cover" class="hero-image" onerror="this.style.display='none'">
 
-        <div class="button-container">
-            <a href="https://dragosdxing.github.io/fm-map/" target="_blank" class="map-btn">
-                🗺️ Deschide Harta FM Interactivă
-            </a>
-        </div>
-
-        <div class="language-menu">
-            <span>ENGLI<span style="color: #ff6b6b;">S</span>H</span>
-            <span>GER<span style="color: #ffd93d;">M</span>AN</span>
-            <span>POLISH</span>
-            <span>ITALI<span style="color: #6bcb77;">A</span>N</span>
-            <span>RUSSI<span style="color: #ff6b6b;">A</span>N</span>
+        <div class="language-menu notranslate">
+            <button class="lang-btn" onclick="toggleTranslation('en', this)">🇬🇧 ENGLISH</button>
+            <button class="lang-btn" onclick="toggleTranslation('de', this)">🇩🇪 GERMAN</button>
+            <button class="lang-btn" onclick="toggleTranslation('pl', this)">🇵🇱 POLISH</button>
+            <button class="lang-btn" onclick="toggleTranslation('it', this)">🇮🇹 ITALIAN</button>
+            <button class="lang-btn" onclick="toggleTranslation('ru', this)">🇷🇺 RUSSIAN</button>
         </div>
 
         <div class="subtitle">
@@ -357,8 +347,62 @@
             </div>
     </div>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit2() {
+            new google.translate.TranslateElement({pageLanguage: 'ro', autoDisplay: false}, 'google_translate_element2');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
     <script>
-        // 1. Incarcare Stiri
+        // Logica pentru Butoanele de Limba
+        let currentLang = 'ro';
+
+        function toggleTranslation(lang, btnElement) {
+            // Daca apesi pe o limba care e deja activa, revenim la Romana (refresh scurt)
+            if (currentLang === lang) {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+                window.location.reload();
+                return;
+            }
+
+            // Altfel, setam butonul activ si declansam traducerea
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            currentLang = lang;
+            
+            doGTranslate('ro|' + lang);
+        }
+
+        // Hack-ul pentru a declansa selectia ascunsa a motorului Google
+        function doGTranslate(lang_pair) {
+            if(lang_pair.value) lang_pair = lang_pair.value;
+            if(lang_pair == '') return;
+            var lang = lang_pair.split('|')[1];
+            var teCombo;
+            var sel = document.getElementsByTagName('select');
+            for (var i = 0; i < sel.length; i++) {
+                if (sel[i].className.indexOf('goog-te-combo') != -1) {
+                    teCombo = sel[i];
+                    break;
+                }
+            }
+            if (document.getElementById('google_translate_element2') == null || document.getElementById('google_translate_element2').innerHTML.length == 0 || teCombo.length == 0 || teCombo.innerHTML.length == 0) {
+                setTimeout(function() { doGTranslate(lang_pair) }, 500)
+            } else {
+                teCombo.value = lang;
+                if (typeof(document.createEvent) == 'function') {
+                    var evObj = document.createEvent('HTMLEvents');
+                    evObj.initEvent('change', true, true);
+                    teCombo.dispatchEvent(evObj);
+                } else {
+                    teCombo.fireEvent('onchange');
+                }
+            }
+        }
+
+        // 2. Incarcare Stiri
         function loadNews() {
             const container = document.getElementById('news-container');
             
@@ -378,11 +422,11 @@
                 htmlContent += `
                     <div class="news-card">
                         <div class="news-header">
-                            <div class="news-country-tag">
+                            <div class="news-country-tag notranslate">
                                 <span class="news-flag">${flag}</span>
                                 <span>${countryName}</span>
                             </div>
-                            <span class="news-date">${news.date}</span>
+                            <span class="news-date notranslate">${news.date}</span>
                         </div>
                         <div class="news-content">
                             ${news.content}
@@ -394,14 +438,14 @@
             container.innerHTML = htmlContent;
         }
 
-        // 2. Ceas Live
+        // 3. Ceas Live
         function updateClock() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('ro-RO', { hour12: false });
             document.getElementById('clock').textContent = timeString;
         }
 
-        // 3. Vremea
+        // 4. Vremea
         function getWeather() {
             const weatherEl = document.getElementById('weather');
 
