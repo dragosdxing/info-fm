@@ -2,27 +2,27 @@ const NEWS_DB = [
     {
         date: "14 ianuarie 2026",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Love Radio"</span> a început să emită în Telenești, pe frecvența <span class="freq-style">94,4 MHz</span> și Hîncești pe frecvența <span class="freq-style">97,4 MHz</span>. Ambele emit cu RDS [LOVE_FM_] și PI [1435].`
+        content: `Postul de radio <a href="https://www.facebook.com/loveradiomoldova/" target="_blank" class="highlight">"Love Radio"</a> a început să emită în Telenești, pe frecvența <span class="freq-style">94,4 MHz</span> și Hîncești pe frecvența <span class="freq-style">97,4 MHz</span>. Ambele emit cu RDS [LOVE_FM_] și PI [1435].`
     },
     {
         date: "5 ianuarie 2026",
         country: "MD",
-        content: `Conform grupului <span class="highlight">"MDtvRADIO"</span>, postul de radio <span class="highlight">"Radio Moldova"</span> a început să emită în Iepureni (raionul Cantemir) pe <span class="freq-style">100,2 MHz</span>. Frecvențele <span class="freq-style">91,4 MHz</span> Mingir și <span class="freq-style">96,0 MHz</span> Cărpineni încă nu sunt operaționale.`
+        content: `Conform grupului <a href="https://www.facebook.com/share/v/1SM4BbS1GE/" target="_blank" class="highlight">"MDtvRADIO"</a>, postul de radio <span class="highlight">"Radio Moldova"</span> a început să emită în Iepureni (raionul Cantemir) pe <span class="freq-style">100,2 MHz</span>. Frecvențele <span class="freq-style">91,4 MHz</span> Mingir și <span class="freq-style">96,0 MHz</span> Cărpineni încă nu sunt operaționale.`
     },
     {
         date: "1 ianuarie 2026",
         country: "RO",
-        content: `Postul de radio <span class="highlight">"One World Radio"</span> a fost înlocuit cu <span class="highlight">Vibe FM</span> ce are ca format muzică românească, solicitarea de schimbare a licenței a avut loc pe 16 decembrie 2025.`
+        content: `Postul de radio <a href="https://www.tomorrowland.com/one-world-radio/" target="_blank" class="highlight">"One World Radio"</a> a fost înlocuit cu <a href="https://vibefm.ro/" target="_blank" class="highlight">Vibe FM</a> ce are ca format muzică românească, solicitarea de schimbare a licenței a avut loc pe 16 decembrie 2025.`
     },
     {
         date: "23 decembrie 2025",
         country: "MD",
-        content: `Consiliul Audiovizual a propus retragerea a două licențe radio, respectiv <span class="highlight">"Diaspora FM"</span> din Sîngerei - <span class="freq-style">93,1 MHz</span> (a retransmis postul de radio "Radio Dar") și <span class="highlight">"Radio Noroc"</span> din Glodeni - <span class="freq-style">102,5 MHz</span>, pe motiv că frecvențele respective nu au funcționat pe parcursul perioadelor de verificare, fapt confirmat și de datele furnizate de ANRCETI.`
+        content: `<a href="https://consiliuaudiovizual.md/news/ca-a-dispus-retragerea-a-2-frecvente-radio-pentru-intreruperea-nemotivata-a-activitatii-si-amendarea-diaspora-fm-cu-25-000-de-lei-pentru-nerespectarea-conceptiei-generale-a-servic/" target="_blank" class="highlight">Consiliul Audiovizual</a> a propus retragerea a două licențe radio, respectiv <span class="highlight">"Diaspora FM"</span> din Sîngerei - <span class="freq-style">93,1 MHz</span> (a retransmis postul de radio "Radio Dar") și <span class="highlight">"Radio Noroc"</span> din Glodeni - <span class="freq-style">102,5 MHz</span>, pe motiv că frecvențele respective nu au funcționat pe parcursul perioadelor de verificare, fapt confirmat și de datele furnizate de <a href="https://consiliuaudiovizual.md/wp-content/uploads/2025/12/Rezultatele-controlului-pe-%E2%80%9EDiaspora-FM.docx" target="_blank" style="color: #fff; text-decoration: underline;">ANRCETI</a>.`
     },
     {
         date: "21 decembrie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Diaspora FM"</span> a revenit în eter pe frecvența <span class="freq-style">97,8 MHz</span> în Bălți, după o lungă absență a sa.`
+        content: `Postul de radio <a href="https://www.youtube.com/watch?v=BnliCgCoLp4" target="_blank" class="highlight">"Diaspora FM"</a> a revenit în eter pe frecvența <span class="freq-style">97,8 MHz</span> în Bălți, după o lungă absență a sa.`
     },
     {
         date: "15 decembrie 2025",
@@ -32,32 +32,32 @@ const NEWS_DB = [
     {
         date: "15 decembrie 2025",
         country: "RO",
-        content: `A inceput sa emita in Bucuresti noul post de radio <span class="highlight">"Urban FM"</span> pe frecventa <span class="freq-style">92,7 MHz</span>. Postul emite relativ de pe acelasi amplasament cu postul <span class="highlight">"Gold FM"</span> de pe <span class="freq-style">96,9 MHz</span>, mai exact de pe Strada Lujerului. Postul emite cu RDS [Urban_FM] si PI [E7A3].`
+        content: `A inceput sa emita in Bucuresti noul post de radio <a href="https://www.paginademedia.ro/stiri-media/urban-fm-lansare-bucuresti-22269750" target="_blank" class="highlight">"Urban FM"</a> pe frecventa <span class="freq-style">92,7 MHz</span>. Postul emite relativ de pe acelasi amplasament cu postul <span class="highlight">"Gold FM"</span> de pe <span class="freq-style">96,9 MHz</span>, mai exact de pe Strada Lujerului. <a href="https://urbanfm.ro" target="_blank" style="color:#fff; text-decoration:underline;">Postul</a> emite cu RDS [Urban_FM] si PI [E7A3].`
     },
     {
         date: "5 noiembrie 2025",
         country: "RO",
-        content: `Postul de radio <span class="highlight">„Smile FM”</span> a început să emită în Vaslui pe <span class="freq-style">89,7 MHz</span>. Postul emite pe același amplasament cu <span class="freq-style">95,2 MHz</span> <span class="highlight">Radio Guerrilla</span> și <span class="freq-style">106,7 MHz</span> <span class="highlight">Radio Trinitas</span>.`
+        content: `Postul de radio <a href="https://www.smilefm.ro/" target="_blank" class="highlight">„Smile FM”</a> a început să emită în Vaslui pe <span class="freq-style">89,7 MHz</span>. Postul emite pe același amplasament cu <span class="freq-style">95,2 MHz</span> <span class="highlight">Radio Guerrilla</span> și <span class="freq-style">106,7 MHz</span> <span class="highlight">Radio Trinitas</span>.`
     },
     {
         date: "5 noiembrie 2025",
         country: "RO",
-        content: `În urma ședinței CNA, au fost retrase două licențe radio, și mai exact <span class="highlight">„Sport Total FM”</span> ce a emis în Victoria - <span class="freq-style">92,8 MHz</span> și <span class="highlight">„Radio Tecuci”</span> ce a emis în Tecuci pe <span class="freq-style">106,9 MHz</span>.`
+        content: `În urma <a href="https://www.paginademedia.ro/cna/cna-retrageri-licente-4-noiembrie-22225460" target="_blank" style="color:#fff; text-decoration:underline;">ședinței CNA</a>, au fost retrase două licențe radio, și mai exact <span class="highlight">„Sport Total FM”</span> ce a emis în Victoria - <span class="freq-style">92,8 MHz</span> și <a href="https://radiotecuci.ro/" target="_blank" class="highlight">„Radio Tecuci”</a> ce a emis în Tecuci pe <span class="freq-style">106,9 MHz</span>.`
     },
     {
         date: "30 octombrie 2025",
         country: "RO",
-        content: `Postul de radio <span class="highlight">„Radio Guerrilla”</span> a început să emită în Târgoviște pe <span class="freq-style">88,7 MHz</span>.`
+        content: `Postul de radio <a href="https://www.guerrillaradio.ro/reteaua-radio-guerrilla/" target="_blank" class="highlight">„Radio Guerrilla”</a> a început să emită în Târgoviște pe <span class="freq-style">88,7 MHz</span>.`
     },
     {
         date: "17 octombrie 2025",
         country: "MD",
-        content: `În urma ședinței CA, s-au acordat 10 frecvențe radio din cele 28 scoase la concurs, astfel: postul <span class="highlight">„Radio 7”</span> a câștigat Rezina - <span class="freq-style">89,4 MHz</span>, Fălești - <span class="freq-style">93,4 MHz</span>, Taraclia - <span class="freq-style">97,0 MHz</span>, Ceadîr-Lunga - <span class="freq-style">104,2 MHz</span>, Soroca - <span class="freq-style">104,6 MHz</span> și Florești - <span class="freq-style">106,0 MHz</span>; <span class="highlight">„Love Radio”</span> a câștigat Telenești - <span class="freq-style">94,4 MHz</span> și Hîncești - <span class="freq-style">97,4 MHz</span>; <span class="highlight">„Vintage FM”</span> a câștigat fosta frecvență a postului „Radio ZUM 2”, mai exact Chișinău - <span class="freq-style">93,3 MHz</span> și <span class="highlight">„Radio Vocea Speranței”</span> a câștigat frecvența din Căușeni - <span class="freq-style">104,8 MHz</span>.`
+        content: `În urma <a href="https://consiliuaudiovizual.md/news/10-frecvente-radio-acordate-de-ca-in-urma-unui-concurs-inclusiv-unui-post-nou-in-chisinau/" target="_blank" style="color:#fff; text-decoration:underline;">ședinței CA</a>, s-au acordat 10 frecvențe radio din cele 28 scoase la concurs, astfel: postul <span class="highlight">„Radio 7”</span> a câștigat Rezina - <span class="freq-style">89,4 MHz</span>, Fălești - <span class="freq-style">93,4 MHz</span>, Taraclia - <span class="freq-style">97,0 MHz</span>, Ceadîr-Lunga - <span class="freq-style">104,2 MHz</span>, Soroca - <span class="freq-style">104,6 MHz</span> și Florești - <span class="freq-style">106,0 MHz</span>; <span class="highlight">„Love Radio”</span> a câștigat Telenești - <span class="freq-style">94,4 MHz</span> și Hîncești - <span class="freq-style">97,4 MHz</span>; <span class="highlight">„Vintage FM”</span> a câștigat fosta frecvență a postului „Radio ZUM 2”, mai exact Chișinău - <span class="freq-style">93,3 MHz</span> și <span class="highlight">„Radio Vocea Speranței”</span> a câștigat frecvența din Căușeni - <span class="freq-style">104,8 MHz</span>.`
     },
     {
         date: "23 septembrie 2025",
         country: "RO",
-        content: `Au început să emită <span class="highlight">"Sweet FM"</span> în Sibiu pe <span class="freq-style">90,4 MHz</span>, respectiv <span class="highlight">"Magic FM"</span> în Focșani pe <span class="freq-style">99,3 MHz</span>. De menționat că „Magic FM” Focșani a pornit cu RDS: [MAGIC_FM][99.3____] și PI [E210] și emite pe același sistem radiant cu „Kiss FM” de pe <span class="freq-style">88,7 MHz</span>.`
+        content: `Au început să emită <a href="https://www.facebook.com/sweetfm.ro/photos/sibiu-esti-pregatit-pentru-ceva-explozivsweet-fm-se-lanseaza-in-curand-pe-904-fm/1622858631971756/" target="_blank" class="highlight">"Sweet FM"</a> în Sibiu pe <span class="freq-style">90,4 MHz</span>, respectiv <a href="https://www.facebook.com/MonitoruldeVrancea/posts/pfbid02i3fuK7NMA8nAVai3cdTUSk7fiMi3r7LQH9ymoRvZZCFG4t7BWBysRUUGQtwr7vVfl/" target="_blank" class="highlight">"Magic FM"</a> în Focșani pe <span class="freq-style">99,3 MHz</span>. De menționat că „Magic FM” Focșani a pornit cu RDS: [MAGIC_FM][99.3____] și PI [E210] și emite pe același sistem radiant cu „Kiss FM” de pe <span class="freq-style">88,7 MHz</span>.`
     },
     {
         date: "20 septembrie 2025",
@@ -67,7 +67,7 @@ const NEWS_DB = [
     {
         date: "19 august 2025",
         country: "RO",
-        content: `Postul de radio <span class="highlight">„Sweet FM”</span> ce a emis în Murfatlar pe <span class="freq-style">95,9 MHz</span> s-a mutat pe releul din Techirghiol pe <span class="freq-style">95,8 MHz</span> și cu PAR de 500W.`
+        content: `Postul de radio <a href="https://sweetfm.ro/" target="_blank" class="highlight">„Sweet FM”</a> ce a emis în Murfatlar pe <span class="freq-style">95,9 MHz</span> s-a mutat pe releul din Techirghiol pe <span class="freq-style">95,8 MHz</span> și cu PAR de 500W.`
     },
     {
         date: "3 iulie 2025",
@@ -77,17 +77,17 @@ const NEWS_DB = [
     {
         date: "2 iulie 2025",
         country: "MD",
-        content: `Noul post de radio <span class="highlight">"Radio Moldova Comrat"</span> a început să emită în Comrat pe <span class="freq-style">105,6 MHz</span>. De menționat că deține și frecvența <span class="freq-style">104,3 MHz</span> din Vulcănești însă aceasta înca nu emite.`
+        content: `Noul post de radio <a href="https://www.facebook.com/RadioRomaniaInternational/posts/s-a-lansat-radio-moldova-comratcompania-teleradio-moldova-a-lansat-postul-region/1146956574122697/" target="_blank" class="highlight">"Radio Moldova Comrat"</a> a început să emită în Comrat pe <span class="freq-style">105,6 MHz</span>. De menționat că deține și frecvența <span class="freq-style">104,3 MHz</span> din Vulcănești însă aceasta înca nu emite.`
     },
     {
         date: "17 iunie 2025",
         country: "RO",
-        content: `„Societatea Română de Radio (SRR)” a solicitat la CNA acordarea de 15 frecvențe. Însă, postul public nu a primit niciuna dintre aceste frecvențe, deoarece au întârziat cu solicitarea.`
+        content: `<a href="https://www.paginademedia.ro/cna/radio-romania-frecvente-radio-22069887" target="_blank" class="highlight">„Societatea Română de Radio (SRR)”</a> a solicitat la CNA acordarea de 15 frecvențe. Însă, postul public nu a primit niciuna dintre aceste frecvențe, deoarece au întârziat cu solicitarea.`
     },
     {
         date: "13 iunie 2025",
         country: "RO",
-        content: `CNA a anunțat lista societăților înscrise la concursul de acordare a licențelor audiovizuale pentru 2025. Concursul va începe în data de 30 iunie 2025.`
+        content: `CNA a anunțat lista societăților înscrise la concursul de acordare a licențelor audiovizuale pentru 2025. Lista completă cu frecvențele scoase la concurs și dosarele depuse este disponibilă <a href="https://cna.ro/IMG/pdf/INSCRIERI_CONCURS_RADIO_2025_-_LOCALITATI.pdf" target="_blank" style="color:#fff; text-decoration:underline;">aici</a>.`
     },
     {
         date: "1 iunie 2025",
@@ -97,12 +97,12 @@ const NEWS_DB = [
     {
         date: "25 mai 2025",
         country: "MD",
-        content: `A pornit în Chișinău pe <span class="freq-style">98,6 MHz</span> postul de radio <span class="highlight">"Realitatea FM"</span>. UPDATE: Emite cu RDS [RLT_FM__] și PI [1019].`
+        content: `A pornit în Chișinău pe <span class="freq-style">98,6 MHz</span> postul de radio <span class="highlight">"Realitatea FM"</span>. UPDATE: <a href="https://youtu.be/K57FZ6DvMmk" target="_blank" style="color:#fff; text-decoration:underline;">Emite cu RDS</a> [RLT_FM__] și PI [1019].`
     },
     {
         date: "22 mai 2025",
         country: "RO",
-        content: `CNA a aprobat mutarea postului de radio <span class="highlight">"Sweet FM"</span> ce a emis în Murfatlar pe <span class="freq-style">95.9 MHz</span> pe SNR Techirghiol, cu modificarea frecvenței în <span class="freq-style">95.8 MHz</span>, respectiv mutarea lui <span class="highlight">"Radio ZU"</span> Eforie Nord - <span class="freq-style">100,6 MHz</span> la Mangalia.`
+        content: `CNA a aprobat mutarea postului de radio <a href="https://sweetfm.ro/" target="_blank" class="highlight">"Sweet FM"</a> ce a emis în Murfatlar pe <span class="freq-style">95.9 MHz</span> pe SNR Techirghiol, cu modificarea frecvenței în <span class="freq-style">95.8 MHz</span>, respectiv mutarea lui <span class="highlight">"Radio ZU"</span> Eforie Nord - <span class="freq-style">100,6 MHz</span> la Mangalia.`
     },
     {
         date: "10 mai 2025",
@@ -117,7 +117,7 @@ const NEWS_DB = [
     {
         date: "7 mai 2025",
         country: "MD",
-        content: `Două posturi din Rep.Moldova au obținut 5 frecvențe noi: <span class="highlight">"Radio Dar"</span> cu frecvențele din Ocnița (<span class="freq-style">91,6 MHz</span>), Edineț (<span class="freq-style">88,7 MHz</span>), Nisporeni (<span class="freq-style">97,0 MHz</span>) și Comrat (<span class="freq-style">98,0 MHz</span>), respectiv <span class="highlight">"Jurnal FM"</span> care a obținut frecvența din Leova (<span class="freq-style">92,1 MHz</span>).`
+        content: `<a href="https://consiliuaudiovizual.md/news/2-posturi-radio-si-au-extins-aria-de-emisie-prin-obtinerea-de-noi-frecvente/" target="_blank" style="color:#fff; text-decoration:underline;">Două posturi din Rep.Moldova au obținut 5 frecvențe noi</a>: <span class="highlight">"Radio Dar"</span> cu frecvențele din Ocnița (<span class="freq-style">91,6 MHz</span>), Edineț (<span class="freq-style">88,7 MHz</span>), Nisporeni (<span class="freq-style">97,0 MHz</span>) și Comrat (<span class="freq-style">98,0 MHz</span>), respectiv <span class="highlight">"Jurnal FM"</span> care a obținut frecvența din Leova (<span class="freq-style">92,1 MHz</span>).`
     },
     {
         date: "28 aprilie 2025",
@@ -127,57 +127,57 @@ const NEWS_DB = [
     {
         date: "21 aprilie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Drochia"</span> și-a încetat emisia, deoarece a expirat licența. De asemenea, în același caz este și <span class="highlight">Radio Pro Mingir</span>, ce a emis în Mingir pe <span class="freq-style">105,1 MHz</span>.`
+        content: `Postul de radio <span class="highlight">"Radio Drochia"</span> și-a încetat emisia, deoarece <a href="https://consiliuaudiovizual.md/news/doua-frecvente-radio-ramase-disponibile-au-fost-scoase-la-concurs/" target="_blank" style="color:#fff; text-decoration:underline;">a expirat licența</a> și nu a mai fost prelungită, frecvența a fost scoasă la concurs. <a href="https://www.youtube.com/watch?v=cJE10OQSzos" target="_blank" style="color:#00ff00; text-decoration:underline;">Clip video cu jingle</a>. De asemenea, în același caz este și <a href="https://www.youtube.com/watch?v=87VKOp_WBzw" target="_blank" class="highlight">Radio Pro Mingir</a>, ce a emis în Mingir pe <span class="freq-style">105,1 MHz</span>.`
     },
     {
         date: "18 aprilie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Dar"</span> a început să emită în Vulcănești, pe <span class="freq-style">88,1 MHz</span>, cu RDS [DAR-FM__][TELEFON:][069383693] și PI [103E]. Pe această frecvență a emis fostul Radio Albena.`
+        content: `Postul de radio <a href="https://www.frocus.net/main.php?lng=ro&rzd=E-TV&pag=area&g=30#emiter_table" target="_blank" class="highlight">"Radio Dar"</a> a început să emită în Vulcănești, pe <span class="freq-style">88,1 MHz</span>, cu RDS [DAR-FM__][TELEFON:][069383693] și PI [103E]. Pe această frecvență a emis fostul Radio Albena.`
     },
     {
         date: "14 aprilie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Plai"</span> a început să emită în Țareuca (Rezina), pe <span class="freq-style">90,3 MHz</span>.`
+        content: `Postul de radio <a href="https://www.frocus.net/main.php?lng=ro&rzd=E-TV&pag=area&g=223#emiter_table" target="_blank" class="highlight">"Radio Plai"</a> a început să emită în Țareuca (Rezina), pe <span class="freq-style">90,3 MHz</span>. De menționat că acesta a emis în Trifești, iar apoi mutat în Țareuca, în 2023 (conform <a href="https://i.postimg.cc/brb57xXC/Captur-de-ecran-2025-04-17-104208.png" target="_blank" style="color:#fff; text-decoration:underline;">fmlist</a>).`
     },
     {
         date: "14 aprilie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Soroca"</span> pe <span class="freq-style">104,6 MHz</span> și-a încetat emisia, iar frecvența a fost scoasă la concurs.`
+        content: `Postul de radio <a href="https://www.frocus.net/main.php?lng=ro&rzd=E-TV&pag=area&g=15#emiter_table" target="_blank" class="highlight">"Radio Soroca"</a> pe <span class="freq-style">104,6 MHz</span> și-a încetat emisia, iar frecvența a fost scoasă la concurs.`
     },
     {
         date: "1 aprilie 2025",
         country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Minisat"</span> a fost preluat de către <span class="highlight">Radio ZU</span>, cu aprobarea CNA.`
+        content: `Postul de radio <a href="https://www.paginademedia.ro/cna/radio-minisat-dispare-21985360" target="_blank" class="highlight">"Radio Minisat"</a> a fost preluat de către <span class="highlight">Radio ZU</span>, cu aprobarea CNA.`
     },
     {
         date: "25 martie 2025",
         country: "MD",
-        content: `Consiliul Audiovizualului a anunțat un nou concurs cu 26 de frecvențe radio.`
+        content: `<a href="https://consiliuaudiovizual.md/news/26-de-frecvente-radio-au-fost-scoase-la-concurs/" target="_blank" class="highlight">Consiliul Audiovizualului</a> a anunțat un nou concurs cu 26 de frecvențe radio.`
     },
     {
         date: "24 martie 2025",
         country: "RO",
-        content: `S-a relansat online postul de radio <span class="highlight">"Vibe FM"</span>, de data asta cu muzică românească nostalgică.`
+        content: `S-a relansat online postul de radio <a href="https://vibefm.ro" target="_blank" class="highlight">"Vibe FM"</a>, de data asta cu muzică românească nostalgică.`
     },
     {
         date: "12 martie 2025",
         country: "MD",
-        content: `Consiliul Audiovizualului a acordat 23 de frecvențe radio din cele 48 scoase la concurs.`
+        content: `<a href="https://consiliuaudiovizual.md/news/23-de-frecvente-radio-acordate-de-ca-in-urma-unui-concurs/" target="_blank" class="highlight">Consiliul Audiovizualului</a> a acordat 23 de frecvențe radio din cele 48 scoase la concurs.`
     },
     {
         date: "3 martie 2025",
         country: "RO",
-        content: `Postul de radio <span class="highlight">"Smart Radio"</span> a încetat să mai emită în București, pe <span class="freq-style">107,3 MHz</span>. Postul va continua să emită doar online.`
+        content: `Postul de radio <a href="https://www.paginademedia.ro/cna/radio-smart-s-a-inchis-21955125" target="_blank" class="highlight">"Smart Radio"</a> a încetat să mai emită în București, pe <span class="freq-style">107,3 MHz</span>. Postul va continua să emită doar online.`
     },
     {
         date: "26 februarie 2025",
         country: "MD",
-        content: `<span class="highlight">"Hit FM Moldova"</span> a început să emită în Soroca pe <span class="freq-style">103,1 MHz</span> și Rezina pe <span class="freq-style">92,9 MHz</span>.`
+        content: `<a href="https://www.frocus.net/main.php?lng=ro&rzd=E-TV&pag=e-kanaly&v=1169#description" target="_blank" class="highlight">"Hit FM Moldova"</a> a început să emită în Soroca pe <span class="freq-style">103,1 MHz</span> și Rezina pe <span class="freq-style">92,9 MHz</span>.`
     },
     {
         date: "25 februarie 2025",
         country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Relax"</span> a început să emită în Vadul lui Vodă pe <span class="freq-style">94,5 MHz</span>.`
+        content: `Postul de radio <a href="https://www.frocus.net/main.php?lng=ro&rzd=E-TV&pag=area&g=68#emiter_table" target="_blank" class="highlight">"Radio Relax"</a> a început să emită în Vadul lui Vodă pe <span class="freq-style">94,5 MHz</span>.`
     },
     {
         date: "12 februarie 2025",
@@ -207,471 +207,6 @@ const NEWS_DB = [
     {
         date: "24 ianuarie 2025",
         country: "MD",
-        content: `Consiliul Audiovizual a eliberat 48 de frecvențe radio (sursa: unimedia.info).`
-    },
-    {
-        date: "19 noiembrie 2024",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Moldova Tineret"</span> a început să emită în Ștefan-Vodă pe <span class="freq-style">89,8 MHz</span>.`
-    },
-    {
-        date: "18 noiembrie 2024",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Moldova Tineret"</span> a început să emită în Căușeni pe <span class="freq-style">100,3 MHz</span>.`
-    },
-    {
-        date: "12 noiembrie 2024",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Dance FM"</span> a început să emită în Bălți pe <span class="freq-style">89,3 MHz</span>. Postul emite cu RDS [DANCE_FM] și PI 1035.`
-    },
-    {
-        date: "4 noiembrie 2024",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Moldova Tineret"</span> a început să emită în Briceni pe <span class="freq-style">102,6 MHz</span>.`
-    },
-    {
-        date: "10 octombrie 2024",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Tanănana"</span> se retrage definitiv, fie în FM fie online.`
-    },
-    {
-        date: "10 septembrie 2024",
-        country: "RO",
-        content: `CNA a retras licența postului de radio <span class="highlight">"Național FM"</span> ce a emis în Mahmudia pe <span class="freq-style">90,9 MHz</span>.`
-    },
-    {
-        date: "23 iulie 2024",
-        country: "RO",
-        content: `A fost retrasă licența postului <span class="highlight">"Național FM"</span> ce a emis în Petroșani (stația Parângul Mare) pe <span class="freq-style">105,9 MHz</span>.`
-    },
-    {
-        date: "11 iunie 2024",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Favorit FM"</span> ce emite în Pașcani pe <span class="freq-style">102,7 MHz</span> a fost retras. De asemenea, CNA a retras licența postului <span class="highlight">"Radio Vâlcea 1"</span> ce a emis în Râmnicu Vâlcea pe <span class="freq-style">88,6 MHz</span>.`
-    },
-    {
-        date: "29 mai 2024",
-        country: "RO",
-        content: `A fost retrasă licența postului de radio <span class="highlight">"Național FM"</span> ce a emis în Târgu Mureș pe <span class="freq-style">100,6 MHz</span>.`
-    },
-    {
-        date: "8 martie 2024",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Impuls"</span> a început să emită pe frecvențele Radio Boom (Focșani - <span class="freq-style">95,3 MHz</span>, Bârlad - <span class="freq-style">104,9 MHz</span>, Buzău - <span class="freq-style">96,7 MHz</span> și Piatra-Neamț - <span class="freq-style">102,3 MHz</span>).`
-    },
-    {
-        date: "26 februarie 2024",
-        country: "RO",
-        content: `Au fost adăugate licențe noi în lista cu frecvențele anunțate pe 20 februarie 2024 (Costești <span class="freq-style">94,8 MHz</span>, Horezu <span class="freq-style">95,1 MHz</span>, Nehoiu <span class="freq-style">88,2 MHz</span>, Sibiu <span class="freq-style">90,4 MHz</span>, Soveja <span class="freq-style">88,2 MHz</span>, Târgoviște <span class="freq-style">88,7 MHz</span>).`
-    },
-    {
-        date: "20 februarie 2024",
-        country: "RO",
-        content: `Consiliul National al Audiovizualului a anunțat o listă cu frecvențe noi pentru următorul concurs radio.`
-    },
-    {
-        date: "18 februarie 2024",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio România Actualități"</span> ce emite în Sibiu (Păltiniș) și-a schimbat frecvența de pe <span class="freq-style">101,8 MHz</span> pe <span class="freq-style">101,9 MHz</span>. UPDATE. Postul și-a revenit pe frecvența de <span class="freq-style">101,8 MHz</span>.`
-    },
-    {
-        date: "16 ianuarie 2024",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Moldova Tineret"</span> a început să emită în Chișinău pe <span class="freq-style">105,9 MHz</span>.`
-    },
-    {
-        date: "9 ianuarie 2024",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Impuls"</span> a primit aprobare de la CNA să preia frecvențele postului <span class="highlight">"Boom FM"</span>.`
-    },
-    {
-        date: "21 decembrie 2023",
-        country: "MD",
-        content: `În urma concursului radio organizat de CA Moldova, s-au câștigat multiple licențe noi.`
-    },
-    {
-        date: "17 decembrie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Galați"</span> a început să emită cu RDS în Tecuci pe <span class="freq-style">106,1 MHz</span>.`
-    },
-    {
-        date: "10 decembrie 2023",
-        country: "MD",
-        content: `A revenit în eter postul de radio <span class="highlight">"Radio Jean"</span> în Cahul pe <span class="freq-style">92,6 MHz</span> și Baurci pe <span class="freq-style">107,5 MHz</span>.`
-    },
-    {
-        date: "29 noiembrie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Galați"</span> a început să emită cu RDS în Galați pe <span class="freq-style">87,7 MHz</span>.`
-    },
-    {
-        date: "21 noiembrie 2023",
-        country: "MD",
-        content: `Astăzi s-a lansat oficial postul de radio <span class="highlight">"Smile FM Moldova"</span>.`
-    },
-    {
-        date: "20 noiembrie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Pro FM"</span> a început să emită fără RDS în Videle pe <span class="freq-style">90,4 MHz</span>.`
-    },
-    {
-        date: "15 noiembrie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Smile FM Moldova"</span> a început să emită în Hîncești pe <span class="freq-style">94,2 MHz</span> și în Leova pe <span class="freq-style">89,9 MHz</span>.`
-    },
-    {
-        date: "12 noiembrie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"M Plus"</span> a început să emită cu RDS în Pașcani pe <span class="freq-style">90,1 MHz</span>.`
-    },
-    {
-        date: "1 noiembrie 2023",
-        country: "MD",
-        content: `Consiliul Audiovizual a eliberat licențe noi în FM.`
-    },
-    {
-        date: "4 octombrie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Rock FM"</span> a început să emită în Miercurea Ciuc pe <span class="freq-style">90,9 MHz</span> în locul postului <span class="highlight">"Kiss FM”</span>.`
-    },
-    {
-        date: "4 octombrie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Jurnal FM"</span> a început să emită în Orhei pe frecvența <span class="freq-style">101,6 MHz</span>. Emite de pe același CET împreună cu <span class="freq-style">97,5</span> <span class="highlight">Orhei FM</span> și <span class="freq-style">98,3 MHz</span> <span class="highlight">Radio Noroc</span>.`
-    },
-    {
-        date: "8 septembrie 2023",
-        country: "MD",
-        content: `Licențele posturilor de radio <span class="highlight">"Radio One"</span> și <span class="highlight">"Liubimoe Radio"</span> nu au mai fost prelungite de către CA.`
-    },
-    {
-        date: "1 septembrie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Moldova Tineret"</span> a început să emită în Cahul pe <span class="freq-style">89,3 MHz</span>. Postul emite fără RDS.`
-    },
-    {
-        date: "22 august 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Sweet FM"</span> a început să emită în Râmnicu Vâlcea (<span class="freq-style">96,9 MHz</span>) și în Agnita (<span class="freq-style">88,5 MHz</span>) în locul postului <span class="highlight">"Eveniment FM"</span>.`
-    },
-    {
-        date: "16 iulie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Love Radio"</span> a început să emită în Glodeni (TX Iabloana), pe frecvenţa <span class="freq-style">99,9 MHz</span>.`
-    },
-    {
-        date: "27 iunie 2023",
-        country: "RO",
-        content: `Posturile de radio <span class="highlight">"Smart Radio"</span> (ce a emis în Câmpina pe <span class="freq-style">103,2 MHz</span>) și <span class="highlight">"Popular FM"</span> (ce a emis în Moldova Nouă pe <span class="freq-style">107,8 MHz</span>) și-au retras licențele.`
-    },
-    {
-        date: "25 iunie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Dor"</span> ce a emis în Căușeni pe <span class="freq-style">93,0 MHz</span> își retrage licența.`
-    },
-    {
-        date: "18 iunie 2023",
-        country: "RO",
-        content: `Postul <span class="highlight">"Radio Clasic"</span> a pornit în Făgăraș pe <span class="freq-style">90,9 MHz</span>. Postul a pornit fără RDS.`
-    },
-    {
-        date: "8 iunie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"EBS Radio"</span> a început să emită în Brașov (Vf Postăvarul) pe frecvența <span class="freq-style">106,4 MHz</span>.`
-    },
-    {
-        date: "13 mai 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Eco FM"</span> a început să emită în Chișinău pe <span class="freq-style">95,7 MHz</span>.`
-    },
-    {
-        date: "2 mai 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Realitatea FM"</span> a început să emită în Snagov pe <span class="freq-style">103,1 MHz</span>.`
-    },
-    {
-        date: "25 aprilie 2023",
-        country: "MD",
-        content: `În urma concursului radio, posturile care au obținut noile licențe sunt: <span class="highlight">Radio Moldova Tineret</span> (multiple frecvențe), <span class="highlight">Smile FM Moldova</span>, <span class="highlight">Love Radio Moldova</span>, <span class="highlight">Jurnal FM</span>.`
-    },
-    {
-        date: "24 aprilie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Realitatea FM"</span> ce a emis în București pe <span class="freq-style">90,2 MHz</span> și-a încetat emisia.`
-    },
-    {
-        date: "23 aprilie 2023",
-        country: "MD",
-        content: `Noul post de radio <span class="highlight">"Radio Roks Moldova"</span> emite pe fostele frecvente ale postului <span class="highlight">"Radio Alla"</span> din Chisinau pe <span class="freq-style">96,7 Mhz</span> si Balti <span class="freq-style">102,1 MHz</span>.`
-    },
-    {
-        date: "10 aprilie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">„Radio Impuls”</span> a început să emită în Ploiești pe <span class="freq-style">88,3 MHz</span>, Câmpina pe <span class="freq-style">88,6 MHz</span> și Sinaia pe <span class="freq-style">103,6 MHz</span>.`
-    },
-    {
-        date: "4 aprilie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Galaxy"</span> ce emite în Caransebeș pe <span class="freq-style">99,1 MHz</span>, și-a mutat frecvența pe <span class="freq-style">98,6 MHz</span> și emite cu 300W.`
-    },
-    {
-        date: "28 martie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Impuls"</span> a început să emită în Alba Iulia pe <span class="freq-style">99,7 MHz</span> și Câmpeni <span class="freq-style">96,2 MHz</span>.`
-    },
-    {
-        date: "21 martie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio România Muzical"</span> a început să emită în Iaşi pe <span class="freq-style">95,4 MHz</span> seara după ora 23.`
-    },
-    {
-        date: "18 martie 2023",
-        country: "MD",
-        content: `A revenit în eter postul de radio <span class="highlight">"Hit FM"</span> în Ungheni pe <span class="freq-style">104,5 MHz</span>.`
-    },
-    {
-        date: "7 martie 2023",
-        country: "RO",
-        content: `<span class="highlight">"Radio Impuls"</span> a început să emită în Botoșani pe <span class="freq-style">91,1 MHz</span>.`
-    },
-    {
-        date: "23 februarie 2023",
-        country: "RO",
-        content: `Licențele postului <span class="highlight">"Radio Son"</span> din Sovata (<span class="freq-style">89,2 MHz</span>) și Luduș (<span class="freq-style">94,2 MHz</span>) au fost cedate postului de radio <span class="highlight">"Jurnal FM"</span>.`
-    },
-    {
-        date: "21 februarie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"White FM"</span> ce emite în Târgoviște pe <span class="freq-style">89,8 MHz</span> a fost preluat de directorul local <span class="highlight">Kiss FM</span>.`
-    },
-    {
-        date: "20 februarie 2023",
-        country: "MD",
-        content: `Consiliul Audiovizual a anunțat un nou concurs radio unde vor fi incluse 19 frecvențe noi.`
-    },
-    {
-        date: "15 februarie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Play Radio"</span> a început să emită în teste, în Constanța pe <span class="freq-style">91,6 FM</span>.`
-    },
-    {
-        date: "15 februarie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Impact FM"</span> (cel cu sediul lași) a început să emită în teste, în Suceava pe <span class="freq-style">92,4 MHz</span>.`
-    },
-    {
-        date: "3 februarie 2023",
-        country: "RO",
-        content: `A început să emită în probe <span class="highlight">"Radio România Muzical"</span> în Iași pe <span class="freq-style">95,4 MHz</span>.`
-    },
-    {
-        date: "2 februarie 2023",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Ruskii Hit"</span> ce emite în Chișinău pe <span class="freq-style">101,3 MHz</span> s-a schimbat în <span class="highlight">Dance FM Moldova</span>.`
-    },
-    {
-        date: "1 februarie 2023",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Ring"</span> ce emite în Mediaș pe <span class="freq-style">90,2 MHz</span>, a devenit <span class="highlight">Jurnal FM</span>.`
-    },
-    {
-        date: "29 ianuarie 2023",
-        country: "MD",
-        content: `S-a lansat o nouă nișă online creată de <span class="highlight">Radio Record Moldova</span>, numită <span class="highlight">Record Rock</span>.`
-    },
-    {
-        date: "21 ianuarie 2023",
-        country: "RO",
-        content: `A revenit afișajul RDS al postului <span class="highlight">Viva FM</span> ce emite în Hârlău pe <span class="freq-style">107,4 MHz</span>.`
-    },
-    {
-        date: "17 ianuarie 2023",
-        country: "RO",
-        content: `Se retrage licența postului <span class="highlight">Realitatea FM</span> ce a emis în Sulina pe <span class="freq-style">107,0 MHz</span>.`
-    },
-    {
-        date: "10 ianuarie 2023",
-        country: "RO",
-        content: `Se retrage licența postului <span class="highlight">Realitatea FM</span> ce emite în Cluj pe <span class="freq-style">92,8 MHz</span>.`
-    },
-    {
-        date: "23 decembrie 2022",
-        country: "MD",
-        content: `Postul de radio <span class="highlight">"Radio Orhei"</span> ce emite pe <span class="freq-style">101,6 MHz</span> și-a încetat activitatea de emisie din motive financiare.`
-    },
-    {
-        date: "6 decembrie 2022",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Itsy Bitsy FM"</span> a început să emită pe <span class="freq-style">93,3 MHz</span> în Ploiești.`
-    },
-    {
-        date: "28 noiembrie 2022",
-        country: "MD",
-        content: `În urma concursului radio din Republica Moldova organizat de CA, au fost acordate licențe noi pentru <span class="highlight">ECO FM</span>, <span class="highlight">JURNAL FM</span>, <span class="highlight">RADIO CHIȘINĂU</span>, <span class="highlight">RADIO MOLDOVA TINERET</span>, <span class="highlight">RADIO NOROC</span>, <span class="highlight">VOCEA BASARABIEI</span>.`
-    },
-    {
-        date: "23 noiembrie 2022",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">Hit FM Brașov</span> a început să emită pe <span class="freq-style">88,2 MHz</span> în Zărnești.`
-    },
-    {
-        date: "18 noiembrie 2022",
-        country: "RO",
-        content: `<span class="highlight">Gliga FM</span> ce emite din Toplita pe <span class="freq-style">105,4 MHz</span> isi incheie activitatea de emisie.`
-    },
-    {
-        date: "12 noiembrie 2022",
-        country: "MD",
-        content: `Din motive de mentenanță, <span class="highlight">Hit FM Moldova</span> a oprit emițătoarele din Ungheni (<span class="freq-style">104,5 MHz</span>) și Cahul (<span class="freq-style">105,2 MHz</span>).`
-    },
-    {
-        date: "9 noiembrie 2022",
-        country: "RO",
-        content: `Licențele posturilor <span class="highlight">Best FM</span> și <span class="highlight">Atlas FM</span> sunt cedate către <span class="highlight">Radio Impuls</span>.`
-    },
-    {
-        date: "8 noiembrie 2022",
-        country: "MD",
-        content: `S-a încheiat perioada depunerii dosarelor pentru concursul radio din Republica Moldova.`
-    },
-    {
-        date: "2 noiembrie 2022",
-        country: "RO",
-        content: `<span class="highlight">Radio ZU</span> a inceput sa emita in Slatina pe <span class="freq-style">92,4 MHz</span>.`
-    },
-    {
-        date: "1 noiembrie 2022",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Ercis FM"</span> ce emite in Roman pe <span class="freq-style">88,3 MHz</span> se va muta la catedrala din Sabaoani, Neamt.`
-    },
-    {
-        date: "1 noiembrie 2022",
-        country: "RO",
-        content: `Postul de radio <span class="highlight">"Radio Unu"</span> a inceput sa emita pe <span class="freq-style">107,2 MHz</span> in Piatra Neamt.`
-    },
-    {
-        date: "25 octombrie 2022",
-        country: "MD",
-        content: `A inceput sa emita postul <span class="highlight">Jurnal FM</span> pe <span class="freq-style">88,8 MHz</span> in Nisporeni.`
-    },
-    {
-        date: "18 octombrie 2022",
-        country: "MD",
-        content: `A revenit in eter <span class="highlight">Radio Pro Mingir</span> ce emite in Mingir pe <span class="freq-style">105,1 MHz</span>.`
-    },
-    {
-        date: "13 octombrie 2022",
-        country: "MD",
-        content: `Postul <span class="highlight">Radio Maximum</span> ce emite in Slobozia pe <span class="freq-style">91,5 MHz</span> va fuziona cu <span class="highlight">Radio Energy RUS</span>.`
-    },
-    {
-        date: "30 septembrie 2022",
-        country: "MD",
-        content: `A revenit in eter <span class="highlight">Radio Noroc</span> ce emite in Ungheni pe <span class="freq-style">106,0 MHz</span>.`
-    },
-    {
-        date: "28 septembrie 2022",
-        country: "RO",
-        content: `<span class="highlight">Roman FM</span> obtine aviz de marire a puterii de emisie, de la 200W la 400W.`
-    },
-    {
-        date: "28 septembrie 2022",
-        country: "RO",
-        content: `In urma confirmarii sedintei CNA, <span class="highlight">Radio Vocea Bucovinei</span> ce emite in Campulung Moldovenesc pe <span class="freq-style">88,8 MHz</span> va deveni <span class="highlight">Jurnal FM</span>.`
-    },
-    {
-        date: "27 septembrie 2022",
-        country: "RO",
-        content: `Viitorul <span class="highlight">Play Radio</span> Constanta ce va emite pe <span class="freq-style">91,6 MHz</span> se va lansa oficial in primavara anului 2023.`
-    },
-    {
-        date: "21 septembrie 2022",
-        country: "RO",
-        content: `Si-a revenit RDS-ul postului <span class="highlight">Radio Trinitas</span> ce emite pe Magura Odobesti pe frecventa <span class="freq-style">93,0 MHz</span>. <span class="highlight">Digi FM</span> <span class="freq-style">90,0 MHz</span> si <span class="highlight">Focus FM</span> <span class="freq-style">97,0 MHz</span> emit in continuare fara RDS.`
-    },
-    {
-        date: "16 septembrie 2022",
-        country: "MD",
-        content: `Audiovizual.md a anuntat un nou concurs radio in Moldova.`
-    },
-    {
-        date: "8 septembrie 2022",
-        country: "RO",
-        content: `<span class="highlight">Radio Trinitas</span> ce emite in Craiova pe <span class="freq-style">100,0 MHz</span> se muta pe <span class="freq-style">100,1 MHz</span>.`
-    },
-    {
-        date: "6 septembrie 2022",
-        country: "RO",
-        content: `Aprobare de la CNA, <span class="highlight">Doina FM</span> ce emite in Cernavoda pe <span class="freq-style">97,1 MHz</span> si Mangalia pe <span class="freq-style">98,9 MHz</span> vor deveni <span class="highlight">Radio Trinitas</span>.`
-    },
-    {
-        date: "1 septembrie 2022",
-        country: "MD",
-        content: `Si-a revenit reteaua <span class="highlight">Radio Plai</span> atat in eter cat si online.`
-    },
-    {
-        date: "30 august 2022",
-        country: "MD",
-        content: `Incepand din aceasta seara, din motive necunoscute, postul <span class="highlight">Radio Plai</span> a ramas fara sunet pe intreaga retea.`
-    },
-    {
-        date: "22 august 2022",
-        country: "MD",
-        content: `Postul <span class="highlight">Radio Vocea Basarabiei</span> a inceput sa emita pe <span class="freq-style">98,9 MHz</span> in Cahul.`
-    },
-    {
-        date: "12 august 2022",
-        country: "RO",
-        content: `A pornit emisia <span class="highlight">Ercis FM</span> din Bacau pe frecventa <span class="freq-style">107,0 MHz</span>.`
-    },
-    {
-        date: "9 august 2022",
-        country: "MD",
-        content: `Un nou post de radio online in Moldova, ce poarta numele de <span class="highlight">Radio Relax International</span>.`
-    },
-    {
-        date: "7 august 2022",
-        country: "MD",
-        content: `Si-a revenit emisia postului <span class="highlight">Radio Vocea Basarabiei</span> ce emite in Taraclia pe <span class="freq-style">101,9 MHz</span>.`
-    },
-    {
-        date: "25 iulie 2022",
-        country: "MD",
-        content: `Dupa o perioada de probleme tehnice, <span class="highlight">Hit FM</span> Cimislia <span class="freq-style">93,5 MHz</span> si Ceadir-Lunga <span class="freq-style">94,6 MHz</span> isi vor relua emisia pe data de 1 august 2022.`
-    },
-    {
-        date: "24 iulie 2022",
-        country: "MD",
-        content: `<span class="highlight">Radio Plai</span> din Stefan Voda pe frecventa de <span class="freq-style">100,5 MHz</span> isi muta emisia pe <span class="freq-style">100,6 MHz</span>.`
-    },
-    {
-        date: "6 iulie 2022",
-        country: "MD",
-        content: `Si-a revenit emisia postului de pe <span class="freq-style">92,6 MHz</span> Cahul insa emite <span class="highlight">Novoe Radio</span>.`
-    },
-    {
-        date: "30 iunie 2022",
-        country: "RO",
-        content: `Astazi s-au acordat noile licente radio de la concursul radio CNA 2022.`
-    },
-    {
-        date: "18 iunie 2022",
-        country: "MD",
-        content: `Licentele <span class="highlight">Radio 1</span> si <span class="highlight">Radio 1 Plus</span> din Tiraspol au fost mutate pe <span class="freq-style">104,1 MHz</span>, respectiv <span class="freq-style">105,1 MHz</span>.`
-    },
-    {
-        date: "17 iunie 2022",
-        country: "MD",
-        content: `A pornit codorul RDS de la <span class="highlight">Hit FM Moldova</span> Cahul; PS: HIT_FM__/<span class="freq-style">105.2_FM</span> si cod PI: 5000.`
-    },
-    {
-        date: "3 mai 2022",
-        country: "MD",
-        content: `Astazi este ziua oficiala in care se inchide TV Analogul Terestru din Moldova inclusiv partile audio ce au emis in FM banda est (OIRT).`
-    },
-    {
-        date: "28 februarie 2022",
-        country: "MD",
-        content: `Echipa redactiei <span class="highlight">Radio Sputnik Moldova</span> partea romaneasca a demisionat din cauza propagandei impuse de conducerea postului.`
+        content: `Consiliul Audiovizual a eliberat 48 de frecvențe radio (sursa: <a href="https://unimedia.info/ro/news/086a9f7364d52a3c/doc-consiliul-audiovizualului-scoate-la-concurs-48-de-frecvente-radio-ce-trebuie-sa-contina-dosarul-de-aplicare.html" target="_blank" style="color:#fff; text-decoration:underline;">unimedia.info</a>).`
     }
 ];
