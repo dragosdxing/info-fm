@@ -1,6 +1,11 @@
 const NEWS_DB = [
     {
         country: "RO",
+        date: "28.02.2026",
+        content: "Postul de radio \"<a href=\"https://onlineradiobox.com/ro/voceaevangheliei882/\" target=\"_blank\">R.Vocea Evangheliei</a>\" a început să emită în Soveja pe frecvența 88,2 MHz. Postul emite cu RDS [RVE_SVJ_] și PI [EFFF]. Acesta emite pe turnul GSM de lângă Parc Soveja."
+    },
+    {
+        country: "RO",
         date: "24.03.2026",
         content: "<a href=\"https://cna.ro/a-ordinea-de-zi-a-sedintelor-de-marti-24-martie-2026-si-miercuri-25-martie-2026-orele-1000-clp636hc2poydof5cofdwhij/\" target=\"_blank\">CNA</a> a aprobat cedările către \"Radio Vocea Evangheliei\" a licențelor \"Jurnal FM\" din Bacău (94,0 MHz), Piatra Neamț (92,0 MHz), Luduș (94,2 MHz), Făgăraș (107,2 MHz) și Sovata (89,2 MHz)."
     },
