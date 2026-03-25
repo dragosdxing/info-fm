@@ -35,12 +35,11 @@
             border-radius: 4px;
             box-sizing: border-box;
             font-family: inherit;
-            color-scheme: dark; /* Face calendarul să fie pe fundal închis */
+            color-scheme: dark;
         }
         textarea { height: 150px; resize: vertical; }
         input:focus, textarea:focus { border-color: #00ff00; outline: none; }
         
-        /* Stil pentru câmpul blocat */
         input[readonly] {
             background: rgba(255, 255, 255, 0.02);
             color: #666;
@@ -105,14 +104,56 @@
     </div>
 
     <script>
-        // Setează automat data de azi în calendar (formatul cerut de input type="date" este YYYY-MM-DD)
         const azi = new Date();
         const zi = String(azi.getDate()).padStart(2, '0');
         const luna = String(azi.getMonth() + 1).padStart(2, '0');
         const an = azi.getFullYear();
         document.getElementById('newsDate').value = `${an}-${luna}-${zi}`;
 
-        // Functii sigure pentru encodare/decodare Base64 cu diacritice românești
+        // ==========================================
+        // MINI-DICȚIONAR PENTRU AUTOCORECTARE DIACRITICE
+        // ==========================================
+        const dictionarDiacritice = {
+            "Actualitati": "Actualități",
+            "actualitati": "actualități",
+            "Stiri": "Știri",
+            "stiri": "știri",
+            "Romania": "România",
+            "romania": "România",
+            "Chisinau": "Chișinău",
+            "chisinau": "chișinău",
+            "Bucuresti": "București",
+            "bucuresti": "bucurești",
+            "Frecventa": "Frecvența",
+            "frecventa": "frecvența",
+            "Frecventele": "Frecvențele",
+            "frecventele": "frecvențele",
+            "Licenta": "Licența",
+            "licenta": "licența",
+            "Judetul": "Județul",
+            "judetul": "județul",
+            "Statie": "Stație",
+            "statie": "stație",
+            "mhz": "MHz",  // corectează și scrierea mică în formatul corect de frecvență
+            "Mhz": "MHz"
+        };
+
+        // Eveniment care se declanșează când scrii în textarea
+        document.getElementById('newsContent').addEventListener('keyup', function(e) {
+            // Se activează doar când apeși Spațiu sau Enter (ca să nu îți modifice cuvântul în timp ce îl scrii)
+            if (e.key === ' ' || e.key === 'Enter') {
+                let text = this.value;
+                for (const [faraDiacritice, cuDiacritice] of Object.entries(dictionarDiacritice)) {
+                    // \b asigură că se înlocuiește doar cuvântul întreg (ex: să nu schimbe o literă în interiorul altui cuvânt)
+                    const regex = new RegExp("\\b" + faraDiacritice + "\\b", "g");
+                    text = text.replace(regex, cuDiacritice);
+                }
+                this.value = text;
+            }
+        });
+        // ==========================================
+
+
         function b64EncodeUnicode(str) {
             return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
                 return String.fromCharCode('0x' + p1);
@@ -139,7 +180,6 @@
                 return;
             }
 
-            // Transformăm data din YYYY-MM-DD în DD.MM.YYYY pentru a fi afișată frumos pe site
             const dateParts = rawDate.split('-');
             const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
 
@@ -152,7 +192,6 @@
             const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
             try {
-                // 1. Luăm fișierul actual
                 const getRes = await fetch(apiUrl, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -163,7 +202,6 @@
                 const fileSha = fileData.sha;
                 const currentFileContent = b64DecodeUnicode(fileData.content);
 
-                // 2. Extragem array-ul JSON
                 statusEl.innerHTML = 'Se procesează noua știre...';
                 
                 let startIndex = currentFileContent.indexOf('[');
@@ -174,19 +212,16 @@
                 let jsonString = currentFileContent.substring(startIndex, endIndex + 1);
                 let newsArray = JSON.parse(jsonString);
 
-                // 3. Adăugăm știrea nouă LA ÎNCEPUTUL array-ului
                 newsArray.unshift({
                     country: country,
                     date: formattedDate,
                     content: content
                 });
 
-                // 4. Reconstruim fișierul JS
                 const newJsonString = JSON.stringify(newsArray, null, 4);
                 const newFileContent = `const NEWS_DB = ${newJsonString};`;
                 const encodedContent = b64EncodeUnicode(newFileContent);
 
-                // 5. Salvăm fișierul înapoi pe GitHub
                 statusEl.innerHTML = 'Se salvează modificările pe GitHub...';
                 
                 const putRes = await fetch(apiUrl, {
