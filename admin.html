@@ -35,6 +35,7 @@
             border-radius: 4px;
             box-sizing: border-box;
             font-family: inherit;
+            color-scheme: dark;
         }
         textarea { height: 150px; resize: vertical; }
         input:focus, textarea:focus { border-color: #00ff00; outline: none; }
@@ -114,7 +115,7 @@
         </select>
 
         <label>Data:</label>
-        <input type="text" id="newsDate" placeholder="ex: 25.03.2026">
+        <input type="date" id="newsDate">
 
         <label>Conținut Știre:</label>
         <div class="toolbar">
@@ -129,16 +130,15 @@
     </div>
 
     <script>
-        // Setează automat data de azi în format DD.MM.YYYY
+        // Setează automat data de azi în calendar
         const azi = new Date();
         const zi = String(azi.getDate()).padStart(2, '0');
         const luna = String(azi.getMonth() + 1).padStart(2, '0');
         const an = azi.getFullYear();
-        document.getElementById('newsDate').value = `${zi}.${luna}.${an}`;
+        document.getElementById('newsDate').value = `${an}-${luna}-${zi}`;
 
-        // ==========================================
-        // FUNCȚII PENTRU BUTOANELE DE FORMATARE
-        // ==========================================
+        const numeLuni = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+
         function addLink() {
             const textarea = document.getElementById('newsContent');
             const start = textarea.selectionStart;
@@ -174,32 +174,18 @@
             textarea.focus();
         }
 
-        // ==========================================
-        // MINI-DICȚIONAR PENTRU AUTOCORECTARE DIACRITICE
-        // ==========================================
         const dictionarDiacritice = {
-            "Actualitati": "Actualități",
-            "actualitati": "actualități",
-            "Stiri": "Știri",
-            "stiri": "știri",
-            "Romania": "România",
-            "romania": "România",
-            "Chisinau": "Chișinău",
-            "chisinau": "chișinău",
-            "Bucuresti": "București",
-            "bucuresti": "bucurești",
-            "Frecventa": "Frecvența",
-            "frecventa": "frecvența",
-            "Frecventele": "Frecvențele",
-            "frecventele": "frecvențele",
-            "Licenta": "Licența",
-            "licenta": "licența",
-            "Judetul": "Județul",
-            "judetul": "județul",
-            "Statie": "Stație",
-            "statie": "stație",
-            "mhz": "MHz",  
-            "Mhz": "MHz"
+            "Actualitati": "Actualități", "actualitati": "actualități",
+            "Stiri": "Știri", "stiri": "știri",
+            "Romania": "România", "romania": "România",
+            "Chisinau": "Chișinău", "chisinau": "chișinău",
+            "Bucuresti": "București", "bucuresti": "bucurești",
+            "Frecventa": "Frecvența", "frecventa": "frecvența",
+            "Frecventele": "Frecvențele", "frecventele": "frecvențele",
+            "Licenta": "Licența", "licenta": "licența",
+            "Judetul": "Județul", "judetul": "județul",
+            "Statie": "Stație", "statie": "stație",
+            "mhz": "MHz", "Mhz": "MHz"
         };
 
         document.getElementById('newsContent').addEventListener('keyup', function(e) {
@@ -213,35 +199,59 @@
             }
         });
 
-        // ==========================================
-        // FUNCȚII PENTRU PUBLICARE PE GITHUB
-        // ==========================================
         function b64EncodeUnicode(str) {
-            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
-                return String.fromCharCode('0x' + p1);
-            }));
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) { return String.fromCharCode('0x' + p1); }));
         }
 
         function b64DecodeUnicode(str) {
-            return decodeURIComponent(atob(str).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
+            return decodeURIComponent(atob(str).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join(''));
+        }
+
+        // Funcție inteligentă de parsare a datei pentru sortare
+        function parseDateForSort(dateStr) {
+            // 1. Verificăm dacă e formatul nou: "25 martie 2026"
+            if (dateStr.includes(' ')) {
+                const parts = dateStr.split(' ');
+                if (parts.length === 3) {
+                    const z = parseInt(parts[0], 10);
+                    const l = numeLuni.indexOf(parts[1].toLowerCase());
+                    const a = parseInt(parts[2], 10);
+                    return new Date(a, l, z).getTime();
+                }
+            }
+            // 2. Verificăm dacă e formatul vechi: "25.03.2026"
+            if (dateStr.includes('.')) {
+                const parts = dateStr.split('.');
+                if (parts.length === 3) {
+                    const z = parseInt(parts[0], 10);
+                    const l = parseInt(parts[1], 10) - 1; // Luna începe de la 0 în JS
+                    const a = parseInt(parts[2], 10);
+                    return new Date(a, l, z).getTime();
+                }
+            }
+            return 0; // Fallback
         }
 
         async function publishNews() {
             const token = document.getElementById('githubToken').value.trim();
             const repo = document.getElementById('repoName').value.trim();
             const country = document.getElementById('newsCountry').value;
-            // Acum formatDate este preluat exact cum este în căsuță (ex: 25.03.2026)
-            const formattedDate = document.getElementById('newsDate').value.trim();
+            const rawDate = document.getElementById('newsDate').value; 
             const content = document.getElementById('newsContent').value.trim();
             const statusEl = document.getElementById('status');
             const btn = document.getElementById('publishBtn');
 
-            if (!token || !repo || !formattedDate || !content) {
+            if (!token || !repo || !rawDate || !content) {
                 statusEl.innerHTML = '<span class="error">Te rog completează toate câmpurile!</span>';
                 return;
             }
+
+            // Transformăm "YYYY-MM-DD" din calendar în "DD luna YYYY"
+            const dParts = rawDate.split('-');
+            const ziFormate = parseInt(dParts[2], 10); // Scoate zeroul din față (ex: 05 devine 5)
+            const lunaNume = numeLuni[parseInt(dParts[1], 10) - 1];
+            const an = dParts[0];
+            const displayDate = `${ziFormate} ${lunaNume} ${an}`;
 
             btn.disabled = true;
             btn.innerText = "Se publică...";
@@ -252,10 +262,7 @@
             const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
             try {
-                const getRes = await fetch(apiUrl, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
+                const getRes = await fetch(apiUrl, { headers: { 'Authorization': `Bearer ${token}` } });
                 if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și conexiunea la GitHub.");
                 
                 const fileData = await getRes.json();
@@ -266,17 +273,20 @@
                 
                 let startIndex = currentFileContent.indexOf('[');
                 let endIndex = currentFileContent.lastIndexOf(']');
-                
                 if (startIndex === -1 || endIndex === -1) throw new Error("Formatul news_data.js nu este valid.");
 
                 let jsonString = currentFileContent.substring(startIndex, endIndex + 1);
                 let newsArray = (new Function("return " + jsonString))();
 
-                newsArray.unshift({
+                // Adăugăm știrea în array cu noul format de dată
+                newsArray.push({
                     country: country,
-                    date: formattedDate,
+                    date: displayDate,
                     content: content
                 });
+
+                // Sortare cronologică aplicată pe date mixte
+                newsArray.sort((a, b) => parseDateForSort(b.date) - parseDateForSort(a.date));
 
                 const newJsonString = JSON.stringify(newsArray, null, 4);
                 const formattedJsonForJs = newJsonString.replace(/"([^"]+)":/g, '$1:');
@@ -288,12 +298,9 @@
                 
                 const putRes = await fetch(apiUrl, {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        message: `Adaugat stire noua ${country} - ${formattedDate}`,
+                        message: `Adăugat știre nouă: ${displayDate}`,
                         content: encodedContent,
                         sha: fileSha
                     })
