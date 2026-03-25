@@ -35,7 +35,6 @@
             border-radius: 4px;
             box-sizing: border-box;
             font-family: inherit;
-            color-scheme: dark;
         }
         textarea { height: 150px; resize: vertical; }
         input:focus, textarea:focus { border-color: #00ff00; outline: none; }
@@ -47,7 +46,6 @@
             border-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* Butonul mare de publicare */
         #publishBtn {
             margin-top: 25px;
             width: 100%;
@@ -63,7 +61,6 @@
         }
         #publishBtn:hover { background: #00ff00; }
 
-        /* Bara cu butoane de formatare */
         .toolbar {
             display: flex;
             gap: 10px;
@@ -117,7 +114,7 @@
         </select>
 
         <label>Data:</label>
-        <input type="date" id="newsDate">
+        <input type="text" id="newsDate" placeholder="ex: 25.03.2026">
 
         <label>Conținut Știre:</label>
         <div class="toolbar">
@@ -132,12 +129,12 @@
     </div>
 
     <script>
-        // Setează automat data de azi în calendar
+        // Setează automat data de azi în format DD.MM.YYYY
         const azi = new Date();
         const zi = String(azi.getDate()).padStart(2, '0');
         const luna = String(azi.getMonth() + 1).padStart(2, '0');
         const an = azi.getFullYear();
-        document.getElementById('newsDate').value = `${an}-${luna}-${zi}`;
+        document.getElementById('newsDate').value = `${zi}.${luna}.${an}`;
 
         // ==========================================
         // FUNCȚII PENTRU BUTOANELE DE FORMATARE
@@ -157,7 +154,7 @@
             if (url && url !== "https://") {
                 const linkCode = `<a href="${url}" target="_blank">${selectedText}</a>`;
                 textarea.setRangeText(linkCode, start, end, 'end');
-                textarea.focus(); // Pune cursorul înapoi în căsuță
+                textarea.focus();
             }
         }
 
@@ -197,4 +194,124 @@
             "frecventele": "frecvențele",
             "Licenta": "Licența",
             "licenta": "licența",
-            "Judetul": "Județul
+            "Judetul": "Județul",
+            "judetul": "județul",
+            "Statie": "Stație",
+            "statie": "stație",
+            "mhz": "MHz",  
+            "Mhz": "MHz"
+        };
+
+        document.getElementById('newsContent').addEventListener('keyup', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                let text = this.value;
+                for (const [faraDiacritice, cuDiacritice] of Object.entries(dictionarDiacritice)) {
+                    const regex = new RegExp("\\b" + faraDiacritice + "\\b", "g");
+                    text = text.replace(regex, cuDiacritice);
+                }
+                this.value = text;
+            }
+        });
+
+        // ==========================================
+        // FUNCȚII PENTRU PUBLICARE PE GITHUB
+        // ==========================================
+        function b64EncodeUnicode(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+        }
+
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
+        async function publishNews() {
+            const token = document.getElementById('githubToken').value.trim();
+            const repo = document.getElementById('repoName').value.trim();
+            const country = document.getElementById('newsCountry').value;
+            // Acum formatDate este preluat exact cum este în căsuță (ex: 25.03.2026)
+            const formattedDate = document.getElementById('newsDate').value.trim();
+            const content = document.getElementById('newsContent').value.trim();
+            const statusEl = document.getElementById('status');
+            const btn = document.getElementById('publishBtn');
+
+            if (!token || !repo || !formattedDate || !content) {
+                statusEl.innerHTML = '<span class="error">Te rog completează toate câmpurile!</span>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Se publică...";
+            statusEl.innerHTML = 'Se descarcă baza de date actuală...';
+
+            const owner = 'dragosdxing'; 
+            const path = 'news_data.js'; 
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+            try {
+                const getRes = await fetch(apiUrl, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și conexiunea la GitHub.");
+                
+                const fileData = await getRes.json();
+                const fileSha = fileData.sha;
+                const currentFileContent = b64DecodeUnicode(fileData.content);
+
+                statusEl.innerHTML = 'Se procesează noua știre...';
+                
+                let startIndex = currentFileContent.indexOf('[');
+                let endIndex = currentFileContent.lastIndexOf(']');
+                
+                if (startIndex === -1 || endIndex === -1) throw new Error("Formatul news_data.js nu este valid.");
+
+                let jsonString = currentFileContent.substring(startIndex, endIndex + 1);
+                let newsArray = (new Function("return " + jsonString))();
+
+                newsArray.unshift({
+                    country: country,
+                    date: formattedDate,
+                    content: content
+                });
+
+                const newJsonString = JSON.stringify(newsArray, null, 4);
+                const formattedJsonForJs = newJsonString.replace(/"([^"]+)":/g, '$1:');
+                
+                const newFileContent = `const NEWS_DB = ${formattedJsonForJs};`;
+                const encodedContent = b64EncodeUnicode(newFileContent);
+
+                statusEl.innerHTML = 'Se salvează modificările pe GitHub...';
+                
+                const putRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Adaugat stire noua ${country} - ${formattedDate}`,
+                        content: encodedContent,
+                        sha: fileSha
+                    })
+                });
+
+                if (!putRes.ok) throw new Error("Eroare la salvarea fișierului pe server.");
+
+                statusEl.innerHTML = '<span class="success">✅ Știrea a fost publicată cu succes! (Durează 1-2 minute să apară pe site)</span>';
+                document.getElementById('newsContent').value = ''; 
+
+            } catch (error) {
+                console.error(error);
+                statusEl.innerHTML = `<span class="error">❌ Eroare: ${error.message}</span>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Publică Știrea";
+            }
+        }
+    </script>
+</body>
+</html>
