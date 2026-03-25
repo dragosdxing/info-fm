@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Info FM</title>
+    <style>
+        body {
+            background-color: #050508;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .admin-panel {
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        h2 { text-align: center; color: #00ff00; margin-top: 0; }
+        label { display: block; margin-top: 15px; color: #aaaaaa; font-size: 14px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        textarea { height: 150px; resize: vertical; }
+        input:focus, textarea:focus { border-color: #00ff00; outline: none; }
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background: #00cc00;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #00ff00; }
+        .settings-group {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+        #status { margin-top: 20px; text-align: center; font-weight: bold; }
+        .success { color: #00ff00; }
+        .error { color: #ff4d4d; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <h2>🛠️ Info FM - Publicare Știri</h2>
+
+        <div class="settings-group">
+            <label>Nume Repository:</label>
+            <input type="text" id="repoName" value="info-fm"> 
+            
+            <label>GitHub Token (începe cu ghp_...):</label>
+            <input type="password" id="githubToken" placeholder="Introdu token-ul aici...">
+        </div>
+
+        <label>Țara:</label>
+        <select id="newsCountry">
+            <option value="RO">🇷🇴 România</option>
+            <option value="MD">🇲🇩 Moldova</option>
+        </select>
+
+        <label>Data:</label>
+        <input type="text" id="newsDate" placeholder="ex: 25.03.2026">
+
+        <label>Conținut Știre (poți folosi tag-uri HTML precum &lt;br&gt;, &lt;b&gt;, &lt;a&gt;):</label>
+        <textarea id="newsContent" placeholder="Scrie știrea aici..."></textarea>
+
+        <button onclick="publishNews()" id="publishBtn">Publică Știrea</button>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // Setează automat data de azi
+        const azi = new Date();
+        const zi = String(azi.getDate()).padStart(2, '0');
+        const luna = String(azi.getMonth() + 1).padStart(2, '0');
+        const an = azi.getFullYear();
+        document.getElementById('newsDate').value = `${zi}.${luna}.${an}`;
+
+        // Functii sigure pentru encodare/decodare Base64 cu diacritice românești
+        function b64EncodeUnicode(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+        }
+
+        function b64DecodeUnicode(str) {
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
+        async function publishNews() {
+            const token = document.getElementById('githubToken').value.trim();
+            const repo = document.getElementById('repoName').value.trim();
+            const country = document.getElementById('newsCountry').value;
+            const date = document.getElementById('newsDate').value.trim();
+            const content = document.getElementById('newsContent').value.trim();
+            const statusEl = document.getElementById('status');
+            const btn = document.getElementById('publishBtn');
+
+            if (!token || !repo || !date || !content) {
+                statusEl.innerHTML = '<span class="error">Te rog completează toate câmpurile!</span>';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Se publică...";
+            statusEl.innerHTML = 'Se descarcă baza de date actuală...';
+
+            const owner = 'dragosdxing'; 
+            const path = 'news_data.js'; 
+            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+            try {
+                // 1. Luăm fișierul actual
+                const getRes = await fetch(apiUrl, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și Numele Repo-ului.");
+                
+                const fileData = await getRes.json();
+                const fileSha = fileData.sha;
+                const currentFileContent = b64DecodeUnicode(fileData.content);
+
+                // 2. Extragem array-ul JSON
+                statusEl.innerHTML = 'Se procesează noua știre...';
+                
+                let startIndex = currentFileContent.indexOf('[');
+                let endIndex = currentFileContent.lastIndexOf(']');
+                
+                if (startIndex === -1 || endIndex === -1) throw new Error("Formatul news_data.js nu este valid.");
+
+                let jsonString = currentFileContent.substring(startIndex, endIndex + 1);
+                let newsArray = JSON.parse(jsonString);
+
+                // 3. Adăugăm știrea nouă LA ÎNCEPUTUL array-ului
+                newsArray.unshift({
+                    country: country,
+                    date: date,
+                    content: content
+                });
+
+                // 4. Reconstruim fișierul JS
+                const newJsonString = JSON.stringify(newsArray, null, 4);
+                const newFileContent = `const NEWS_DB = ${newJsonString};`;
+                const encodedContent = b64EncodeUnicode(newFileContent);
+
+                // 5. Salvăm fișierul înapoi pe GitHub
+                statusEl.innerHTML = 'Se salvează modificările pe GitHub...';
+                
+                const putRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Adaugat stire noua ${country} - ${date}`,
+                        content: encodedContent,
+                        sha: fileSha
+                    })
+                });
+
+                if (!putRes.ok) throw new Error("Eroare la salvarea fișierului pe server.");
+
+                statusEl.innerHTML = '<span class="success">✅ Știrea a fost publicată cu succes! (Durează 1-2 minute să apară pe site)</span>';
+                document.getElementById('newsContent').value = ''; 
+
+            } catch (error) {
+                console.error(error);
+                statusEl.innerHTML = `<span class="error">❌ Eroare: ${error.message}</span>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Publică Știrea";
+            }
+        }
+    </script>
+</body>
+</html>
