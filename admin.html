@@ -47,7 +47,8 @@
             border-color: rgba(255, 255, 255, 0.05);
         }
 
-        button {
+        /* Butonul mare de publicare */
+        #publishBtn {
             margin-top: 25px;
             width: 100%;
             padding: 12px;
@@ -60,7 +61,30 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        button:hover { background: #00ff00; }
+        #publishBtn:hover { background: #00ff00; }
+
+        /* Bara cu butoane de formatare */
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        .tool-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00ff00;
+        }
+
         .settings-group {
             background: rgba(0,0,0,0.3);
             padding: 15px;
@@ -95,20 +119,63 @@
         <label>Data:</label>
         <input type="date" id="newsDate">
 
-        <label>Conținut Știre (poți folosi tag-uri HTML precum &lt;br&gt;, &lt;b&gt;, &lt;a&gt;):</label>
+        <label>Conținut Știre:</label>
+        <div class="toolbar">
+            <button type="button" class="tool-btn" onclick="addLink()">🔗 Adaugă Link</button>
+            <button type="button" class="tool-btn" onclick="addBold()"><b>B</b> Îngroșat (Bold)</button>
+        </div>
         <textarea id="newsContent" placeholder="Scrie știrea aici..."></textarea>
 
-        <button onclick="publishNews()" id="publishBtn">Publică Știrea</button>
+        <button type="button" onclick="publishNews()" id="publishBtn">Publică Știrea</button>
         
         <div id="status"></div>
     </div>
 
     <script>
+        // Setează automat data de azi în calendar
         const azi = new Date();
         const zi = String(azi.getDate()).padStart(2, '0');
         const luna = String(azi.getMonth() + 1).padStart(2, '0');
         const an = azi.getFullYear();
         document.getElementById('newsDate').value = `${an}-${luna}-${zi}`;
+
+        // ==========================================
+        // FUNCȚII PENTRU BUTOANELE DE FORMATARE
+        // ==========================================
+        function addLink() {
+            const textarea = document.getElementById('newsContent');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            if (!selectedText) {
+                alert("Te rog să selectezi mai întâi textul pe care vrei să pui link-ul!");
+                return;
+            }
+
+            const url = prompt("Introdu link-ul (URL-ul):", "https://");
+            if (url && url !== "https://") {
+                const linkCode = `<a href="${url}" target="_blank">${selectedText}</a>`;
+                textarea.setRangeText(linkCode, start, end, 'end');
+                textarea.focus(); // Pune cursorul înapoi în căsuță
+            }
+        }
+
+        function addBold() {
+            const textarea = document.getElementById('newsContent');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+
+            if (!selectedText) {
+                alert("Te rog să selectezi mai întâi textul pe care vrei să-l îngroși!");
+                return;
+            }
+
+            const boldCode = `<b>${selectedText}</b>`;
+            textarea.setRangeText(boldCode, start, end, 'end');
+            textarea.focus();
+        }
 
         // ==========================================
         // MINI-DICȚIONAR PENTRU AUTOCORECTARE DIACRITICE
@@ -130,126 +197,4 @@
             "frecventele": "frecvențele",
             "Licenta": "Licența",
             "licenta": "licența",
-            "Judetul": "Județul",
-            "judetul": "județul",
-            "Statie": "Stație",
-            "statie": "stație",
-            "mhz": "MHz",  // corectează și scrierea mică în formatul corect de frecvență
-            "Mhz": "MHz"
-        };
-
-        // Eveniment care se declanșează când scrii în textarea
-        document.getElementById('newsContent').addEventListener('keyup', function(e) {
-            // Se activează doar când apeși Spațiu sau Enter (ca să nu îți modifice cuvântul în timp ce îl scrii)
-            if (e.key === ' ' || e.key === 'Enter') {
-                let text = this.value;
-                for (const [faraDiacritice, cuDiacritice] of Object.entries(dictionarDiacritice)) {
-                    // \b asigură că se înlocuiește doar cuvântul întreg (ex: să nu schimbe o literă în interiorul altui cuvânt)
-                    const regex = new RegExp("\\b" + faraDiacritice + "\\b", "g");
-                    text = text.replace(regex, cuDiacritice);
-                }
-                this.value = text;
-            }
-        });
-        // ==========================================
-
-
-        function b64EncodeUnicode(str) {
-            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
-                return String.fromCharCode('0x' + p1);
-            }));
-        }
-
-        function b64DecodeUnicode(str) {
-            return decodeURIComponent(atob(str).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-        }
-
-        async function publishNews() {
-            const token = document.getElementById('githubToken').value.trim();
-            const repo = document.getElementById('repoName').value.trim();
-            const country = document.getElementById('newsCountry').value;
-            const rawDate = document.getElementById('newsDate').value;
-            const content = document.getElementById('newsContent').value.trim();
-            const statusEl = document.getElementById('status');
-            const btn = document.getElementById('publishBtn');
-
-            if (!token || !repo || !rawDate || !content) {
-                statusEl.innerHTML = '<span class="error">Te rog completează toate câmpurile!</span>';
-                return;
-            }
-
-            const dateParts = rawDate.split('-');
-            const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
-
-            btn.disabled = true;
-            btn.innerText = "Se publică...";
-            statusEl.innerHTML = 'Se descarcă baza de date actuală...';
-
-            const owner = 'dragosdxing'; 
-            const path = 'news_data.js'; 
-            const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-
-            try {
-                const getRes = await fetch(apiUrl, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și conexiunea la GitHub.");
-                
-                const fileData = await getRes.json();
-                const fileSha = fileData.sha;
-                const currentFileContent = b64DecodeUnicode(fileData.content);
-
-                statusEl.innerHTML = 'Se procesează noua știre...';
-                
-                let startIndex = currentFileContent.indexOf('[');
-                let endIndex = currentFileContent.lastIndexOf(']');
-                
-                if (startIndex === -1 || endIndex === -1) throw new Error("Formatul news_data.js nu este valid.");
-
-                let jsonString = currentFileContent.substring(startIndex, endIndex + 1);
-                let newsArray = (new Function("return " + jsonString))();
-
-                newsArray.unshift({
-                    country: country,
-                    date: formattedDate,
-                    content: content
-                });
-
-                const newJsonString = JSON.stringify(newsArray, null, 4);
-                const newFileContent = `const NEWS_DB = ${newJsonString};`;
-                const encodedContent = b64EncodeUnicode(newFileContent);
-
-                statusEl.innerHTML = 'Se salvează modificările pe GitHub...';
-                
-                const putRes = await fetch(apiUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `Adaugat stire noua ${country} - ${formattedDate}`,
-                        content: encodedContent,
-                        sha: fileSha
-                    })
-                });
-
-                if (!putRes.ok) throw new Error("Eroare la salvarea fișierului pe server.");
-
-                statusEl.innerHTML = '<span class="success">✅ Știrea a fost publicată cu succes! (Durează 1-2 minute să apară pe site)</span>';
-                document.getElementById('newsContent').value = ''; 
-
-            } catch (error) {
-                console.error(error);
-                statusEl.innerHTML = `<span class="error">❌ Eroare: ${error.message}</span>`;
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "Publică Știrea";
-            }
-        }
-    </script>
-</body>
-</html>
+            "Judetul": "Județul
