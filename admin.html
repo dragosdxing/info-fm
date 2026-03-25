@@ -35,9 +35,19 @@
             border-radius: 4px;
             box-sizing: border-box;
             font-family: inherit;
+            color-scheme: dark; /* Face calendarul să fie pe fundal închis */
         }
         textarea { height: 150px; resize: vertical; }
         input:focus, textarea:focus { border-color: #00ff00; outline: none; }
+        
+        /* Stil pentru câmpul blocat */
+        input[readonly] {
+            background: rgba(255, 255, 255, 0.02);
+            color: #666;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
         button {
             margin-top: 25px;
             width: 100%;
@@ -70,8 +80,8 @@
         <h2>🛠️ Info FM - Publicare Știri</h2>
 
         <div class="settings-group">
-            <label>Nume Repository:</label>
-            <input type="text" id="repoName" value="info-fm"> 
+            <label>Nume Repository (Blocat):</label>
+            <input type="text" id="repoName" value="info-fm" readonly> 
             
             <label>GitHub Token (începe cu ghp_...):</label>
             <input type="password" id="githubToken" placeholder="Introdu token-ul aici...">
@@ -84,7 +94,7 @@
         </select>
 
         <label>Data:</label>
-        <input type="text" id="newsDate" placeholder="ex: 25.03.2026">
+        <input type="date" id="newsDate">
 
         <label>Conținut Știre (poți folosi tag-uri HTML precum &lt;br&gt;, &lt;b&gt;, &lt;a&gt;):</label>
         <textarea id="newsContent" placeholder="Scrie știrea aici..."></textarea>
@@ -95,12 +105,12 @@
     </div>
 
     <script>
-        // Setează automat data de azi
+        // Setează automat data de azi în calendar (formatul cerut de input type="date" este YYYY-MM-DD)
         const azi = new Date();
         const zi = String(azi.getDate()).padStart(2, '0');
         const luna = String(azi.getMonth() + 1).padStart(2, '0');
         const an = azi.getFullYear();
-        document.getElementById('newsDate').value = `${zi}.${luna}.${an}`;
+        document.getElementById('newsDate').value = `${an}-${luna}-${zi}`;
 
         // Functii sigure pentru encodare/decodare Base64 cu diacritice românești
         function b64EncodeUnicode(str) {
@@ -119,15 +129,19 @@
             const token = document.getElementById('githubToken').value.trim();
             const repo = document.getElementById('repoName').value.trim();
             const country = document.getElementById('newsCountry').value;
-            const date = document.getElementById('newsDate').value.trim();
+            const rawDate = document.getElementById('newsDate').value;
             const content = document.getElementById('newsContent').value.trim();
             const statusEl = document.getElementById('status');
             const btn = document.getElementById('publishBtn');
 
-            if (!token || !repo || !date || !content) {
+            if (!token || !repo || !rawDate || !content) {
                 statusEl.innerHTML = '<span class="error">Te rog completează toate câmpurile!</span>';
                 return;
             }
+
+            // Transformăm data din YYYY-MM-DD în DD.MM.YYYY pentru a fi afișată frumos pe site
+            const dateParts = rawDate.split('-');
+            const formattedDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
 
             btn.disabled = true;
             btn.innerText = "Se publică...";
@@ -143,7 +157,7 @@
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
-                if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și Numele Repo-ului.");
+                if (!getRes.ok) throw new Error("Nu am putut accesa fișierul. Verifică Token-ul și conexiunea la GitHub.");
                 
                 const fileData = await getRes.json();
                 const fileSha = fileData.sha;
@@ -163,7 +177,7 @@
                 // 3. Adăugăm știrea nouă LA ÎNCEPUTUL array-ului
                 newsArray.unshift({
                     country: country,
-                    date: date,
+                    date: formattedDate,
                     content: content
                 });
 
@@ -182,7 +196,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: `Adaugat stire noua ${country} - ${date}`,
+                        message: `Adaugat stire noua ${country} - ${formattedDate}`,
                         content: encodedContent,
                         sha: fileSha
                     })
